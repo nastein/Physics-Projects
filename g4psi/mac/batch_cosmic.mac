@@ -1,0 +1,15 @@
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/run/initialize
+
+/g4PSI/run/rootfile ./results/cosmics_F3cm_B6cm_mu_minus.root
+/gun/mode/cosmic
+/gun/particle mu-
+/run/beamOn 100000
+/g4PSI/run/rootfile ./results/cosmics_F3cm_B6cm_mu_plus.root
+/gun/mode/cosmic
+/gun/particle mu+
+/run/beamOn 100000

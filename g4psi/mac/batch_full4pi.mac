@@ -1,0 +1,15 @@
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/run/initialize
+
+/g4PSI/run/rootfile full4pi.root
+
+/gun/beam_momentum 1 GeV
+/gun/mode/full4pi
+/gun/particle mu-
+/run/beamOn 200000
+
+

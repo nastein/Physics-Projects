@@ -1,0 +1,135 @@
+# === /Volumes/Work/g4PSI/results_coinc_150714/g4PSI --bias /Volumes/Work/g4PSI/results_coinc_150714/beamline_2015_e_minus_115MeV_t1_s1_in.mac &> /Volumes/Work/g4PSI/results_coinc_150714/beamline_2015_e_minus_115MeV_t1_s1_in.log === 
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+/g4PSI/det/component_on ShieldFloor
+/g4PSI/det/component_on Beamline
+/g4PSI/det/component_on Structure
+# === beamline detectors ===
+/g4PSI/det/component_on BeamCherenkov_sc2
+/g4PSI/det/component_on BeamGEM1
+/g4PSI/det/component_on BeamGEM2
+/g4PSI/det/component_on BeamGEM3
+/g4PSI/det/component_on BeamVetoSC
+#/g4PSI/det/component_on ScatteringChamber_TypeJeru2
+#/g4PSI/det/component_on Target_TypeJeru
+/g4PSI/det/component_on ScatteringChamber_TypeUM
+/g4PSI/det/component_on EmptyTarget_TypeUM
+/g4PSI/det/component_on BeamMonitorSC
+# === scattered particle detectors === 
+/g4PSI/det/component_on WireChamber1
+/g4PSI/det/component_on WireChamber2
+/g4PSI/det/component_on WireChamber_noframe
+/g4PSI/det/component_on SCWall1
+/g4PSI/det/component_on SCWall2
+
+#/g4PSI/det/component_on PMTs
+#/g4PSI/det/component_on TestPlanes
+#/g4PSI/det/component_on TestPlanes_full_setup
+#/g4PSI/det/component_on TestPlanes_beamline_detectors
+
+
+/g4PSI/det/user_parameter1 100 cm
+/g4PSI/det/user_parameter2 10 cm
+
+#/g4PSI/det/setup scatteringtest
+/g4PSI/det/setup standard2015
+#/g4PSI/det/setup toftest2015
+/g4PSI/det/trigger BCC SCL1 SCL2
+/g4PSI/det/trigger BCC SCR1 SCR2
+
+/g4PSI/det/info wiki.txt
+
+/process/msc/FactorForAngleLimit 0.1
+# =======================================
+/run/initialize
+
+/gun/mode full4pi
+/gun/beam_momentum 115 MeV
+/gun/beam_momentum_spread 0.008
+/gun/set_pathlength 23.5 m
+/gun/set_vertexz -1.5 m
+/gun/set_protonjitter 0 ps
+/gun/seeds  553004124 1789501316
+/gun/seeds  458880681 402402643
+/gun/seeds 1304743599 1733627750
+
+
+/gun/particle mu-
+
+
+# ================== #
+#    Visualization
+# ================== #
+
+#/vis/open HepRepFile
+/vis/open OGLIQt
+#/vis/open OGLIX
+
+/vis/drawVolume
+/vis/viewer/set/autoRefresh false
+
+
+#
+# Camera and lights commands
+/vis/viewer/set/viewpointVector -0.305079 0.91361 -0.268781
+/vis/viewer/set/upVector 0 1 0
+/vis/viewer/set/projection orthogonal
+/vis/viewer/zoomTo 2.41
+/vis/viewer/scaleTo 1 1 1
+#/vis/viewer/set/targetPoint -6.68245 10.4345 -8.33277 cm
+# Note that if you have not set a target point, the vis system sets
+# a target point based on the scene - plus any panning and dollying -
+# so don't be alarmed by strange coordinates here.
+/vis/viewer/dollyTo 0 fm
+/vis/viewer/set/lightsMove object
+/vis/viewer/set/lightsVector -0.4 0.7 -0.3
+#/vis/viewer/set/rotationStyle constrainUpDirection
+/vis/viewer/set/background 1.0 1.0 1.0 0
+/vis/viewer/set/defaultColour 1 1 1 1
+/vis/viewer/set/defaultTextColour 0 0 1 1
+
+#
+# Drawing style commands
+/vis/viewer/set/style surface
+#/vis/viewer/set/hiddenEdge true
+/vis/viewer/set/auxiliaryEdge false
+#/vis/viewer/set/hiddenMarker true
+#/vis/viewer/set/globalLineWidthScale 1
+#/vis/viewer/set/globalMarkerScale 1
+#
+# Scene-modifying commands
+#/vis/viewer/set/culling global true
+#/vis/viewer/set/culling invisible true
+#/vis/viewer/set/culling density false
+#/vis/viewer/set/culling coveredDaughters false
+#/vis/viewer/set/sectionPlane off
+#/vis/viewer/set/cutawayMode union
+#/vis/viewer/clearCutawayPlanes
+# No cutaway planes defined.
+#/vis/viewer/set/explodeFactor 1 0 0 0 fm
+/vis/viewer/set/lineSegmentsPerCircle 180
+/vis/scene/add/axes 0 0 0 1 m
+
+
+/vis/scene/endOfEventAction accumulate
+
+#
+# Draw smooth trajectories at end of event, showing trajectory points
+# as markers 2 pixels wide:
+#/vis/scene/add/axes 0 0 1000 100 mm
+/vis/scene/add/trajectories smooth
+# keep all events for visualization
+#/vis/scene/endOfEventAction accumulate -1
+
+/vis/modeling/trajectories/create/drawByCharge
+/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
+/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
+/vis/viewer/set/autoRefresh true
+
+#/control/execute view_topview.mac
+#/vis/viewer/addCutawayPlane 0 0 0 m 1 0 0
+#/vis/viewer/addCutawayPlane 0 0 0 m 0 1 0
+/geometry/test/run
+

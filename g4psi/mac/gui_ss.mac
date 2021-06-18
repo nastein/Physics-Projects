@@ -1,0 +1,58 @@
+#
+#  This file permits to customize, with commands,
+# the menu bar of the G4UIXm, G4UIQt, G4UIWin32 sessions.
+# It has no effect with G4UIterminal.
+#
+# File :
+/gui/addMenu g4file G4File
+/gui/addButton g4file Continue continue
+/gui/addButton g4file Quit exit
+#
+# Run menu :
+/gui/addMenu run Run
+/gui/addButton run "beamOn 1" "/run/beamOn 1"
+/gui/addButton run "beamOn 10" "/run/beamOn 10"
+/gui/addButton run "beamOn 100" "/run/beamOn 100"
+/gui/addButton run "beamOn 1000" "/run/beamOn 1000"
+/gui/addButton run "beamOn 10000" "/run/beamOn 10000"
+#
+# Gun menu :
+/gui/addMenu gun Gun
+/gui/addButton gun "beamline"  "/gun/mode beamline"
+/gui/addButton gun "beamline_pencil"  "/gun/mode beamline_pencil"
+/gui/addButton gun "wall"  "/gun/mode walluniform"
+/gui/addButton gun "wallcenter (flat mom.)"  "/gun/mode wallcenter_momdist"
+/gui/addButton gun "walluniform (flat mom.)"  "/gun/mode walluniform_momdist"
+/gui/addButton gun "walluniform"  "/gun/mode walluniform"
+/gui/addButton gun "115 MeV/c"  "/gun/beam_momentum 115 MeV"
+/gui/addButton gun "153 MeV/c"  "/gun/beam_momentum 153 MeV"
+/gui/addButton gun "210 MeV/c"  "/gun/beam_momentum 210 MeV"
+/gui/addButton gun "e+"     "/gun/particle e+"
+/gui/addButton gun "e-"     "/gun/particle e-"
+/gui/addButton gun "mu+"     "/gun/particle mu+"
+/gui/addButton gun "mu-"     "/gun/particle mu-"
+/gui/addButton gun "pi+"     "/gun/particle pi+"
+/gui/addButton gun "pi-"     "/gun/particle pi-"
+/gui/addButton gun "geantino"     "/gun/particle geantino"
+
+#
+# Vis menu :
+/gui/addMenu vis Vis
+#/gui/addButton vis DAWNFILE  "/control/execute visTutor/exN03Vis0.mac"
+#/gui/addButton vis OpenInventor "/control/execute visTutor/exN03Vis5.mac"
+#/gui/addButton vis TimeSlicing "/control/execute visTutor/exN03Vis12.mac"
+#/gui/addButton vis EmShower "/control/execute visTutor/exN03Vis13.mac"
+#
+# Viewer menu :
+/gui/addMenu viewer Viewer
+/gui/addButton viewer "Set style surface" "/vis/viewer/set/style surface"
+/gui/addButton viewer "Set style wireframe" "/vis/viewer/set/style wire"
+/gui/addButton viewer "Refresh viewer" "/vis/viewer/refresh"
+/gui/addButton viewer "Update viewer (interaction or end-of-file)" "/vis/viewer/update"
+/gui/addButton viewer "Flush viewer (= refresh + update)" "/vis/viewer/flush"
+/gui/addButton viewer "Update scene" "/vis/scene/notifyHandlers"
+#
+# To limit the output flow in the "dump" widget :
+#/N03/event/printModulo 100
+
+/gui/addIcon "Run beam on" user_icon "/run/beamOn 1" run.png 

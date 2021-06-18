@@ -1,0 +1,28 @@
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/run/initialize
+/gun/mode walluniform
+#/gun/mode beamline
+/gun/beam_mix default_particle
+
+# p = 115, 153, 210
+
+# Beam Momentum 153 MeV/c
+# =======================
+
+/gun/beam_momentum 153 MeV
+/g4PSI/run/rootfile uniform_e_minus_153MeV.root
+/gun/particle e-
+/run/beamOn 100000
+#/g4PSI/run/rootfile uniform_e_plus_153MeV.root
+#/gun/particle e+
+#/run/beamOn 100000
+#/g4PSI/run/rootfile uniform_mu_minus_153MeV.root
+#/gun/particle mu-
+#/run/beamOn 100000
+#/g4PSI/run/rootfile uniform_mu_plus_153MeV.root
+#/gun/particle mu+
+#/run/beamOn 100000

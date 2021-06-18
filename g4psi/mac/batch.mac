@@ -1,0 +1,60 @@
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/run/initialize
+/gun/mode/walluniform
+
+# Beam Momentum 115 MeV/c
+# =======================
+
+/gun/beam_momentum 115 MeV
+/g4PSI/run/rootfile uniform_thin_thick_e_minus_115MeV.root
+/gun/particle e-
+/run/beamOn 100000
+/g4PSI/run/rootfile uniform_thin_thick_e_plus_115MeV.root
+/gun/particle e+
+/run/beamOn 100000
+/g4PSI/run/rootfile uniform_thin_thick_mu_minus_115MeV.root
+/gun/particle mu-
+/run/beamOn 100000
+/g4PSI/run/rootfile uniform_thin_thick_mu_plus_115MeV.root
+/gun/particle mu+
+/run/beamOn 100000
+
+# Beam Momentum 153 MeV/c
+# =======================
+
+/gun/beam_momentum 153 MeV
+/g4PSI/run/rootfile uniform_thin_thick_e_minus_153MeV.root
+/gun/particle e-
+/run/beamOn 100000
+/g4PSI/run/rootfile uniform_thin_thick_e_plus_153MeV.root
+/gun/particle e+
+/run/beamOn 100000
+/g4PSI/run/rootfile uniform_thin_thick_mu_minus_153MeV.root
+/gun/particle mu-
+/run/beamOn 100000
+/g4PSI/run/rootfile uniform_thin_thick_mu_plus_153MeV.root
+/gun/particle mu+
+/run/beamOn 100000
+
+# Beam Momentum 210 MeV/c
+# =======================
+
+/gun/beam_momentum 210 MeV
+/g4PSI/run/rootfile uniform_thin_thick_e_minus_210MeV.root
+/gun/particle e-
+/run/beamOn 100000
+/g4PSI/run/rootfile uniform_thin_thick_e_plus_210MeV.root
+/gun/particle e+
+/run/beamOn 100000
+/g4PSI/run/rootfile uniform_thin_thick_mu_minus_210MeV.root
+/gun/particle mu-
+/run/beamOn 100000
+/g4PSI/run/rootfile uniform_thin_thick_mu_plus_210MeV.root
+/gun/particle mu+
+/run/beamOn 100000
+
+

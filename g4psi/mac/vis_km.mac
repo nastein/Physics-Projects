@@ -1,0 +1,172 @@
+/control/verbose 2
+/control/saveHistory
+/run/verbose 0
+
+/event/verbose 0
+/tracking/verbose 0
+#??? /hits/verbose 1
+
+#/geometry/navigator/verbose 1
+#/geometry/navigator/check_mode true
+
+
+# ==== Enable/Disable Detector Components ==== #
+
+#/g4PSI/phys/addPhysics emstandard_opt0     
+#/g4PSI/phys/addPhysics empenelope
+
+/g4PSI/det/component_on ShieldFloor 
+/g4PSI/det/component_off ShieldWall 
+/g4PSI/det/component_off ShieldBLConcrete 
+/g4PSI/det/component_off ShieldBLConcreteTube 
+/g4PSI/det/component_off ShieldBLLead 
+/g4PSI/det/component_off ScatteringChamber_Type1 
+/g4PSI/det/component_off ScatteringChamber_Type2 
+
+/g4PSI/det/component_off WireChamber1
+/g4PSI/det/component_off WireChamber2
+/g4PSI/det/component_off WireChamber3
+/g4PSI/det/component_on BeamGEM1 
+/g4PSI/det/component_off BeamGEM2 
+/g4PSI/det/component_off BeamGEM3 
+/g4PSI/det/component_on OutgoingGEM1
+/g4PSI/det/component_off OutgoingGEM2
+/g4PSI/det/component_off OutgoingGEM3
+
+/g4PSI/det/component_on BeamSciFi 
+/g4PSI/det/component_off BeamRingSC 
+/g4PSI/det/component_off BeamCherenkov 
+/g4PSI/det/component_on TestPlanes
+
+# ========================================== #
+
+# ==== Select geometry mode ==== #
+# standard MUSE
+# test2013_angle (0, 20, 20t, 40, 40t)
+
+#/g4PSI/det/setup standard
+/g4PSI/det/setup test2013_0
+#/g4PSI/det/setup test2013_20
+#/g4PSI/det/setup test2013_20t
+#/g4PSI/det/setup test2013_40
+#/g4PSI/det/setup test2013_40t
+# ============================= #
+
+/run/initialize
+
+# ==== Gun Mode Options: ==== #
+# WALLUNIFORM
+# WALLUNIFORM_MOMDIST
+# FULL4PI
+# WALLUNIFORM_FROM_CENTER
+# COSMIC
+# WALLCENTER
+# WALLCENTER_MOMDIST
+# BEAMLINE
+# BEAMLINE_PENCIL
+
+/gun/mode beamline_pencil
+# =========================== #
+
+# ==== Select momentum and spread: ==== #
+#/gun/beam_momentum 210 MeV
+#/gun/beam_momentum_spread 0.008
+
+/gun/beam_momentum 161 MeV
+/gun/beam_momentum_spread 0.008
+
+#/gun/beam_momentum 115 MeV
+#/gun/beam_momentum_spread 0.02
+# ===================================== #
+
+# ==== Other settings ==== #
+# set_pathlength : channel to target center for RF timing
+# set_vertexz: Z origin of events wrt target for beamline modes
+# set_protonjitter: set proton pulse width for intrinsic RF jitter
+
+/gun/set_pathlength 23.5 m
+/gun/set_vertexz -1.5 m
+/gun/set_protonjitter 300 ps
+# ======================== #
+
+# ==== Select particle type ==== #
+# default_particle: single particle, specify
+# beam_mix_plus: even mix of e, mu, pi
+# beam_mix_minus: even mix of e, mu, pi
+
+/gun/beam_mix default_particle
+/gun/particle mu+
+# ============================== #
+
+# ==== Output rootfile name ==== #
+/gun/seeds 658125250 1132378791
+
+/g4PSI/run/rootfile junebeamtest2013_0_p161_z1.5_mu_1M.root
+# ============================== #
+
+# ================== #
+#    Visualization
+# ================== #
+
+#/vis/open HepRepFile
+/vis/open OGLIQt
+#/vis/open OGLIX
+
+/vis/drawVolume
+/vis/viewer/set/autoRefresh false
+
+
+#
+# Camera and lights commands
+/vis/viewer/set/viewpointVector -0.723364 0.371516 0.581998
+/vis/viewer/set/upVector 0 1 0
+/vis/viewer/set/projection orthogonal
+/vis/viewer/zoomTo 9.85029
+/vis/viewer/scaleTo 1 1 1
+/vis/viewer/set/targetPoint -56.2139 34.3836 35.5076 cm 
+/vis/viewer/dollyTo 0 fm 
+/vis/viewer/set/lightsMove object
+/vis/viewer/set/lightsVector -0.3 1 0.6
+/vis/viewer/set/rotationStyle constrainUpDirection
+/vis/viewer/set/background 1 1 1 1
+/vis/viewer/set/defaultColour 1 1 1 1
+/vis/viewer/set/defaultTextColour 0 0 1 1
+#
+# Drawing style commands
+/vis/viewer/set/style surface
+/vis/viewer/set/hiddenEdge true
+/vis/viewer/set/auxiliaryEdge false
+/vis/viewer/set/hiddenMarker true
+/vis/viewer/set/globalLineWidthScale 1
+/vis/viewer/set/globalMarkerScale 1
+#
+# Scene-modifying commands
+/vis/viewer/set/culling global true
+/vis/viewer/set/culling invisible true
+/vis/viewer/set/culling density false
+/vis/viewer/set/culling coveredDaughters false
+/vis/viewer/set/sectionPlane off
+/vis/viewer/set/cutawayMode union
+/vis/viewer/clearCutawayPlanes
+# No cutaway planes defined.
+/vis/viewer/set/explodeFactor 1 0 0 0 fm 
+/vis/viewer/set/lineSegmentsPerCircle 24
+
+
+/vis/scene/endOfEventAction accumulate
+
+#
+# Draw smooth trajectories at end of event, showing trajectory points
+# as markers 2 pixels wide:
+/vis/scene/add/trajectories smooth
+/vis/modeling/trajectories/create/drawByCharge
+#/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
+#/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
+/vis/viewer/set/autoRefresh true
+
+#/run/beamOn 1
+
+#/vis/open HepRepFile
+#/vis/open RayTracerX
+#/vis/viewer/set/all viewer-0
+#/vis/viewer/refresh

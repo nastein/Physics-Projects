@@ -1,0 +1,531 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use Async;
+
+
+my @jobs = ();
+
+#my $output_dir = "/Volumes/Work/g4PSI/results_target_statistics_150721_bc404_SciFi0/";
+#my $output_dir = "/Volumes/Work/g4PSI/results_target_statistics_150717/";
+#my $output_dir = "/Volumes/Work/g4PSI/results_target_statistics_bc404/";
+#my $output_dir = "/Volumes/Work/g4PSI/results_muon/";
+my $output_dir = "/Users/strauch/tmp/results_muon/";
+#my $output_dir = "/Volumes/Work/g4PSI/results_coinc_160118/";
+#my $output_dir = "/Volumes/Work/g4PSI/results_coinc_160415/";
+#my $output_dir = "/Volumes/Work/g4PSI/results_target_statistics_160124/";
+#my $output_dir = "/Volumes/Work/g4PSI/results_tof_test2015/";
+#my $output_dir = "/Volumes/Work/g4PSI/results_full4pi_momdist/";
+#my $output_dir = "/Volumes/Work/g4PSI/results_full4pi/";
+
+# prepare a local copy of the executable and use that
+my $bias = "--bias";
+# my $bias = "";
+my $do_require_trigger = 0;
+my $target_type = "Target_TypeJeru";
+my $scattering_chamber_type = "ScatteringChamber_TypeJeru";
+my $min_file = 0;
+my $max_file = 9;
+my $code_original = "/Users/strauch/exp/PSI/g4PSI-build/g4PSI";
+my $code = $output_dir . "g4PSI";
+system ("cp $code_original $code");
+
+# about 1 event per 500 thrown.
+
+#&run_full_target_variation();
+#&run_all_trigger();
+#&run_selected();
+#&run_target_statistics();
+&run_muon_decay();
+#&run_tof_test2015();
+#&run_full_4pi();
+
+my $count = 1;
+my $running = 0;
+while ($count > 0) {
+  print "Main program:  The time is now ", scalar(localtime), "\n";
+
+  $count = 0;
+  $running = 0;
+  foreach my $proc (@jobs) {
+    if ($proc) {
+      $count++;
+      if ($proc->ready) {
+	if (my $e = $proc->error) {
+	  print "Something went wrong.  The error was: $e\n";
+	} else {
+	  print "The result of the computation is: ", $proc->result, "\n";
+	}
+	undef $proc;
+      } else {
+	$running++;
+      }
+    }
+  };
+
+  print "$count jobs not yet stopped. $running jobs still running.\n";
+  if ($running > 0) {sleep 60;}
+}
+
+
+sub run_tof_test2015{
+  my $bias = "";
+  my $N = 50000;
+  $N = 500000;
+  
+  foreach my $mom ("108", "109", "110", "111", "112", "113", "114",
+		   "153", "154", "155", "156", "157", "158", "159",
+		   "200", "201", "202", "203", "204", "205", "206"
+		  ) { # MeV/c
+    foreach my $pid ("e_plus", "mu_plus", "pi_plus") {
+      #  foreach my $mom ("154", "157", "158", "159") { # MeV/c
+      #    foreach my $dz ("00", "02", "04", "06", "08") {  # mm
+      foreach my $dz ("00") {  # mm
+	my $dp = "0.0014";
+	&run_simulation_tof($N, $output_dir, "tof2015_L00cm_dz".$dz."mm", $pid, $mom, $dp,  "0 cm", $dz." mm");
+	&run_simulation_tof($N, $output_dir, "tof2015_L25cm_dz".$dz."mm", $pid, $mom, $dp, "25 cm", $dz." mm");
+	&run_simulation_tof($N, $output_dir, "tof2015_L50cm_dz".$dz."mm", $pid, $mom, $dp, "50 cm", $dz." mm");
+      }
+    }
+  }
+}
+
+
+sub run_muon_decay {
+  my $N = 10000;
+  $bias = "";
+  $do_require_trigger = 1;
+  $min_file = 0;
+  $max_file = 0;
+
+  $target_type = "Target_TypeJeru";
+  $scattering_chamber_type = "ScatteringChamber_TypeJeru";
+  my $mode = "beamline";
+
+  my $min_job = 1;
+  my $max_job = 1;
+  for (my $i = $min_job; $i <= $max_job; $i++) {
+    my $name = sprintf "job%02d", $i;
+    print "$name\n";
+#    &run_simulation($N, $output_dir, "$name", $mode, "mu_minus", "115", 0.008, "in", "sc2");
+#    &run_simulation($N, $output_dir, "$name", $mode, "mu_minus", "153", 0.008, "in", "sc3");
+    &run_simulation($N, $output_dir, "$name", $mode, "mu_minus", "210", 0.008, "in", "sc4");
+  }
+};
+
+
+
+sub run_target_statistics {
+  $target_type = "Target_Type2";
+  $scattering_chamber_type = "ScatteringChamber_Type4";
+  $bias = "";
+  $min_file = 0;
+  $max_file = 9;
+  $do_require_trigger = 0;
+
+  my $N = 200000;
+  my $min_run = 1;
+  my $max_run = 2;
+  for (my $i = $min_run; $i <= $max_run; $i++) {
+    my $name = sprintf "run%02d", $i;
+    print "$name\n";
+    &run_simulation($N, $output_dir, "tgt_in_$name", "beamline", "e_minus", "115", 0.008, "in", "sc2");
+    &run_simulation($N, $output_dir, "tgt_in_$name", "beamline", "e_minus", "153", 0.008, "in", "sc3");
+    &run_simulation($N, $output_dir, "tgt_in_$name", "beamline", "e_minus", "210", 0.008, "in", "sc4");
+    &run_simulation($N, $output_dir, "tgt_in_$name", "beamline", "mu_minus", "115", 0.008, "in", "sc2");
+    &run_simulation($N, $output_dir, "tgt_in_$name", "beamline", "mu_minus", "153", 0.008, "in", "sc3");
+    &run_simulation($N, $output_dir, "tgt_in_$name", "beamline", "mu_minus", "210", 0.008, "in", "sc4");
+  };
+
+#  my $N = 40000;
+#  $do_require_trigger = 0;
+#  $min_file = 0;
+#  $max_file = 0;
+#  $bias = "";
+
+#  for (my $tt = 1; $tt <= 2; $tt++) {
+#    for (my $st = 1; $st <= 2; $st++) {
+    
+#      $target_type = "Target_Type$tt";
+#      $scattering_chamber_type = "ScatteringChamber_Type$st";
+#      my $mode = "beamline_2015_center";
+      
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", $mode, "e_minus", "115", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", $mode, "e_minus", "153", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", $mode, "e_minus", "210", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", $mode, "mu_minus", "115", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", $mode, "mu_minus", "153", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", $mode, "mu_minus", "210", 0.008, "in");
+
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", "beamline", "pi_minus", "115", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", "beamline", "pi_minus", "153", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", "beamline", "pi_minus", "210", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", "beamline", "pi_plus", "115", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", "beamline", "pi_plus", "153", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", "beamline", "pi_plus", "210", 0.008, "in");
+#    }
+#  }
+};
+
+
+sub run_full_4pi {
+  $target_type = "Target_Type2";
+  $scattering_chamber_type = "ScatteringChamber_Type4";
+  $bias = "";
+  $min_file = 0;
+  $max_file = 4;
+  $do_require_trigger = 0;
+
+  my $N = 1000000;
+  my $min_run = 1;
+  my $max_run = 3;
+  for (my $i = $min_run; $i <= $max_run; $i++) {
+    my $name = sprintf "run%02d", $i;
+    print "$name\n";
+    &run_simulation($N, $output_dir, "$name", "full4pi", "e_minus", "115", 0.000, "in", "sc2");
+    &run_simulation($N, $output_dir, "$name", "full4pi", "e_minus", "153", 0.000, "in", "sc3");
+    &run_simulation($N, $output_dir, "$name", "full4pi", "e_minus", "210", 0.000, "in", "sc4");
+    &run_simulation($N, $output_dir, "$name", "full4pi", "mu_minus", "115", 0.000, "in", "sc2");
+    &run_simulation($N, $output_dir, "$name", "full4pi", "mu_minus", "153", 0.000, "in", "sc3");
+    &run_simulation($N, $output_dir, "$name", "full4pi", "mu_minus", "210", 0.000, "in", "sc4");
+  };
+
+};
+
+
+
+sub run_full_target_variation {
+  $do_require_trigger = 1;
+  my $N = 1000000;
+#  my $N =  10000;
+
+  for (my $tt = 1; $tt <= 2; $tt++) {
+    for (my $st = 1; $st <= 2; $st++) {
+    
+      $target_type = "Target_Type$tt";
+      $scattering_chamber_type = "ScatteringChamber_Type$st";
+      my $mode = "beamline_2015";
+      
+      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_in", $mode, "e_minus", "115", 0.008, "in");
+      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_in", $mode, "e_minus", "153", 0.008, "in");
+      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_in", $mode, "e_minus", "210", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_in", $mode, "mu_minus", "115", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_in", $mode, "mu_minus", "153", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_in", $mode, "mu_minus", "210", 0.008, "in");
+      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_out", $mode, "e_minus", "115", 0.008, "out");
+      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_out", $mode, "e_minus", "153", 0.008, "out");
+      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_out", $mode, "e_minus", "210", 0.008, "out");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_out", $mode, "mu_minus", "115", 0.008, "out");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_out", $mode, "mu_minus", "153", 0.008, "out");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_out", $mode, "mu_minus", "210", 0.008, "out");
+
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", "beamline", "pi_minus", "115", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", "beamline", "pi_minus", "153", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", "beamline", "pi_minus", "210", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", "beamline", "pi_plus", "115", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", "beamline", "pi_plus", "153", 0.008, "in");
+#      &run_simulation($N, $output_dir, "t$tt"."_s$st"."_mode", "beamline", "pi_plus", "210", 0.008, "in");
+    }
+  }
+};
+
+
+sub run_selected {
+  $target_type = "Target_TypeIA_window4";
+  $scattering_chamber_type = "ScatteringChamber_TypeIA";
+  $bias = "--bias";
+  $min_file = 0;
+  $max_file = 9;
+  $do_require_trigger = 1;
+
+  my $N = 1000000;
+  my $min_run =  6;
+  my $max_run =  10;
+ 
+  for (my $i = $min_run; $i <= $max_run; $i++) {
+    my $name = sprintf "run%02d", $i;
+    print "$name\n";
+    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline_2015_center", "e_minus", "153", 0.008, "in");
+    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline_2015_center", "e_minus", "153", 0.008, "out");
+    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline_2015_center", "mu_minus", "153", 0.008, "in");
+    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline_2015_center", "mu_minus", "153", 0.008, "out");
+  };
+};
+
+
+sub run_all_trigger {
+  $target_type = "Target_TypeJeru";
+  $scattering_chamber_type = "ScatteringChamber_TypeJeru";
+  $bias = "--bias";
+  $min_file = 0;
+  $max_file = 10;
+  $do_require_trigger = 1;
+
+  my $N = 1000000;
+#  my $N = 10000000;
+#  my $N = 1000;
+  my $min_run = 1;
+  my $max_run = 20;
+  for (my $i = $min_run; $i <= $max_run; $i++) {
+    my $name = sprintf "run%02d", $i;
+    print "$name\n";
+
+    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "mu_minus", "115", 0.008, "in", "sc2");
+    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "mu_minus", "153", 0.008, "in", "sc3");
+    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "mu_minus", "210", 0.008, "in", "sc4");
+    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "mu_minus", "115", 0.008, "out", "sc2");
+    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "mu_minus", "153", 0.008, "out", "sc3");
+    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "mu_minus", "210", 0.008, "out", "sc4");
+
+    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "e_minus", "115", 0.008, "in", "sc2");
+    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "e_minus", "153", 0.008, "in", "sc3");
+    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "e_minus", "210", 0.008, "in", "sc4");
+    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "e_minus", "115", 0.008, "out", "sc2");
+    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "e_minus", "153", 0.008, "out", "sc3");
+    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "e_minus", "210", 0.008, "out", "sc4");
+
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "e_minus", "115", 0.008, "in", "sc2");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "e_minus", "153", 0.008, "in", "sc3");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "e_minus", "210", 0.008, "in", "sc4");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "mu_minus", "115", 0.008, "in", "sc2");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "mu_minus", "153", 0.008, "in", "sc3");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "mu_minus", "210", 0.008, "in", "sc4");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "pi_minus", "115", 0.008, "in", "sc2");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "pi_minus", "153", 0.008, "in", "sc3");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "pi_minus", "210", 0.008, "in", "sc4");
+    
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "e_plus", "115", 0.008, "in", "sc2");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "e_plus", "153", 0.008, "in", "sc3");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "e_plus", "210", 0.008, "in", "sc4");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "mu_plus", "115", 0.008, "in", "sc2");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "mu_plus", "153", 0.008, "in", "sc3");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "mu_plus", "210", 0.008, "in", "sc4");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "pi_plus", "115", 0.008, "in", "sc2");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "pi_plus", "153", 0.008, "in", "sc3");
+#    &run_simulation($N, $output_dir, "coinc_in_$name", "beamline", "pi_plus", "210", 0.008, "in", "sc4");
+
+#    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "e_minus", "115", 0.008, "out", "sc2");
+#    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "e_minus", "153", 0.008, "out", "sc3");
+#    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "e_minus", "210", 0.008, "out", "sc4");
+#    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "mu_minus", "115", 0.008, "out", "sc2");
+#    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "mu_minus", "153", 0.008, "out", "sc3");
+#    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "mu_minus", "210", 0.008, "out", "sc4");
+#    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "pi_minus", "115", 0.008, "out", "sc2");
+#    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "pi_minus", "153", 0.008, "out", "sc3");
+#    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "pi_minus", "210", 0.008, "out", "sc4");
+    
+ #   &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "e_plus", "115", 0.008, "out", "sc2");
+ #   &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "e_plus", "153", 0.008, "out", "sc3");
+ #   &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "e_plus", "210", 0.008, "out", "sc4");
+ #   &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "mu_plus", "115", 0.008, "out", "sc2");
+ #   &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "mu_plus", "153", 0.008, "out", "sc3");
+ #   &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "mu_plus", "210", 0.008, "out", "sc4");
+#    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "pi_plus", "115", 0.008, "out", "sc2");
+#    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "pi_plus", "153", 0.008, "out", "sc3");
+#    &run_simulation($N, $output_dir, "coinc_out_$name", "beamline", "pi_plus", "210", 0.008, "out", "sc4");
+  };
+};
+
+sub job_count {
+  my $count = 0;
+  foreach my $proc (@jobs) {
+    if ($proc && !$proc->ready) {
+      $count++;
+    }
+  };
+  return $count;
+}
+
+sub wait_for_slot {
+  my $max_count = 20;
+  while (my $count = job_count() >= $max_count) {sleep 60;}
+}
+
+
+sub run_simulation_tof {
+
+  my $mode = "";
+  my ($N, $output_dir, $name, $particle, $momentum, $momentum_spread, $move, $dz) = @_;
+  my $file = $name."_".$particle."_".$momentum."MeV";
+  my $mac_file = $output_dir.$file.".mac";
+  my $log_file = $output_dir.$file.".log";
+
+  if (-f $log_file) {
+      print "output already exists: $log_file\n";
+#      return;
+  };
+  print "run: $log_file\n";
+
+  open (MAC, "> $mac_file") or die "Can't open this $mac_file : $!\n";
+  print MAC "# === $code $bias $mac_file &> $log_file === \n";
+  print MAC "/control/verbose 0\n";
+  print MAC "/run/verbose 0\n";
+  print MAC "/event/verbose 0\n";
+  print MAC "/tracking/verbose 0\n";
+
+  print MAC "/g4PSI/det/setup toftest2015\n";
+  print MAC "/g4PSI/det/user_parameter1 $move\n";
+  print MAC "/g4PSI/det/user_parameter2 $dz\n";
+  print MAC "/process/msc/FactorForAngleLimit 0.1\n";
+
+  print MAC "# =======================================\n";
+  print MAC "/run/initialize\n";
+  print MAC "/gun/mode beamline\n";   # beamline
+#  print MAC "/gun/mode beamline_pencil\n";   # beamline
+  print MAC "/gun/beam_momentum $momentum MeV\n";  # 153
+  print MAC "/gun/beam_momentum_spread $momentum_spread\n";  # 0.008
+  print MAC "/gun/set_pathlength 23.5 m\n";
+  print MAC "/gun/set_vertexz -2.6 m\n";
+  print MAC "/gun/set_protonjitter 0 ps\n";
+
+my $seed1 = time ^ $$ ^ unpack "%L*", `ps axww | gzip`;
+my $seed2 = time ^ ($$ + ($$ << 15)) ^ unpack "%L*", `ps axww | gzip`;
+
+  print MAC "/gun/seeds $seed1 $seed2 \n";
+  if ($particle eq 'e_minus') {
+    print MAC "/gun/particle e-\n";
+  } elsif ($particle eq 'e_plus') {
+    print MAC "/gun/particle e+\n";
+  } elsif ($particle eq 'mu_minus') {
+    print MAC "/gun/particle mu-\n";
+  } elsif ($particle eq 'mu_plus') {
+    print MAC "/gun/particle mu+\n";
+  } elsif ($particle eq 'pi_minus') {
+    print MAC "/gun/particle pi-\n";
+  } elsif ($particle eq 'pi_plus') {
+    print MAC "/gun/particle pi+\n";
+  };
+
+  my $root_file1 = $output_dir."work_".$file.".root";
+  my $root_file2 = $output_dir.$file.".root";
+  print MAC "/g4PSI/run/rootfile $root_file1\n";
+  print MAC "/run/beamOn $N\n";
+  print MAC "/control/shell mv $root_file1 $root_file2\n";
+  
+  close (MAC);
+
+  print "$file ...\n";
+
+  wait_for_slot();
+  my $proc = Async->new(sub {system ("$code $bias $mac_file &> $log_file")});
+  push (@jobs, $proc);
+  sleep 1;
+}
+
+
+
+
+
+sub run_simulation {
+
+  my $mode = "";
+  my ($N, $output_dir, $name, $gun_mode, $particle, $momentum, $momentum_spread, $target, $bcc) = @_;
+  my $file = $gun_mode."_".$particle."_".$momentum."MeV"."_".$name;
+  my $mac_file = $output_dir.$file.".mac";
+  my $log_file = $output_dir.$file.".log";
+#  if ($bias eq "--bias") {
+#    $log_file = "/dev/null";
+#  };
+
+  if (-f $log_file) {
+      print "output already exists: $log_file\n";
+      return;
+  };
+  print "run: $log_file\n";
+
+  open (MAC, "> $mac_file") or die "Can't open this $mac_file : $!\n";
+  print MAC "# === $code $bias $mac_file &> $log_file === \n";
+  print MAC "/control/verbose 0\n";
+  print MAC "/run/verbose 0\n";
+  print MAC "/event/verbose 0\n";
+  print MAC "/tracking/verbose 0\n";
+
+  print MAC "/g4PSI/det/component_on ShieldFloor\n";
+  print MAC "/g4PSI/det/component_on Beamline\n";
+  print MAC "/g4PSI/det/component_on Structure\n";
+
+#  print MAC "/g4PSI/det/component_off ShieldWall\n"; 
+#  print MAC "/g4PSI/det/component_off ShieldBLConcrete\n"; 
+#  print MAC "/g4PSI/det/component_off ShieldBLConcreteTube\n"; 
+#  print MAC "/g4PSI/det/component_off ShieldBLLead\n"; 
+
+  print MAC "# === beamline detectors === \n";
+  print MAC "/g4PSI/det/component_on BeamCherenkov_$bcc\n";
+  print MAC "/g4PSI/det/component_on BeamGEM1\n"; 
+  print MAC "/g4PSI/det/component_on BeamGEM2\n"; 
+  print MAC "/g4PSI/det/component_on BeamGEM3\n";
+  print MAC "/g4PSI/det/component_on BeamVetoSC\n";
+  print MAC "/g4PSI/det/component_on $scattering_chamber_type\n";
+  if ($target eq 'in') {
+    print MAC "/g4PSI/det/component_on $target_type\n";
+  } else {
+    print MAC "/g4PSI/det/component_on Empty$target_type\n";
+  }
+  print MAC "/g4PSI/det/component_on BeamMonitorSC\n";
+ # print MAC "/g4PSI/det/component_on TestPlanes_full_setup\n";
+
+  print MAC "# === scattered particle detectors === \n";
+  print MAC "/g4PSI/det/component_on WireChamber1\n";
+  print MAC "/g4PSI/det/component_on WireChamber2\n";
+  print MAC "/g4PSI/det/component_on WireChamber_noframe\n";
+
+  print MAC "/g4PSI/det/component_on SCWall1\n"; 
+  print MAC "/g4PSI/det/component_on SCWall2\n";
+  
+  print MAC "/g4PSI/det/setup standard2015\n";
+  if ($do_require_trigger == 1) {
+    print MAC "/g4PSI/det/trigger SCL1 SCL2\n";
+    print MAC "/g4PSI/det/trigger SCR1 SCR2\n";
+  }
+  print MAC "/process/msc/FactorForAngleLimit 0.1\n";
+
+  print MAC "# =======================================\n";
+  print MAC "/run/initialize\n";
+  print MAC "/gun/mode $gun_mode\n";   # beamline
+  print MAC "/gun/beam_momentum $momentum MeV\n";  # 153
+  print MAC "/gun/beam_momentum_spread $momentum_spread\n";  # 0.008
+  print MAC "/gun/set_pathlength 23.5 m\n";
+  print MAC "/gun/set_vertexz -1.5 m\n";
+  print MAC "/gun/set_protonjitter 0 ps\n";
+
+my $seed1 = time ^ $$ ^ unpack "%L*", `ps axww | gzip`;
+my $seed2 = time ^ ($$ + ($$ << 15)) ^ unpack "%L*", `ps axww | gzip`;
+print $seed1 . "\n";
+print $seed2 . "\n";
+
+  print MAC "/gun/seeds $seed1 $seed2 \n";
+  if ($particle eq 'e_minus') {
+    print MAC "/gun/particle e-\n";
+  } elsif ($particle eq 'e_plus') {
+    print MAC "/gun/particle e+\n";
+  } elsif ($particle eq 'mu_minus') {
+    print MAC "/gun/particle mu-\n";
+  } elsif ($particle eq 'mu_plus') {
+    print MAC "/gun/particle mu+\n";
+  } elsif ($particle eq 'pi_minus') {
+    print MAC "/gun/particle pi-\n";
+  } elsif ($particle eq 'pi_plus') {
+    print MAC "/gun/particle pi+\n";
+  };
+
+  for (my $n = $min_file; $n <= $max_file; $n++) {
+    #  for (my $n = 0; $n < 1; $n++) {
+    my $run_name = sprintf ".%02d", $n;
+    my $root_file1 = $output_dir."work_".$file.$run_name.".root";
+    my $root_file2 = $output_dir.$file.$run_name.".root";
+    print MAC "/g4PSI/run/rootfile $root_file1\n";
+    print MAC "/run/beamOn $N\n";
+    print MAC "/control/shell mv $root_file1 $root_file2\n";
+  }
+
+  close (MAC);
+
+  print "$file ...\n";
+
+  wait_for_slot();
+  my $proc = Async->new(sub {system ("$code $bias $mac_file &> $log_file")});
+  push (@jobs, $proc);
+  sleep 1;
+}
+

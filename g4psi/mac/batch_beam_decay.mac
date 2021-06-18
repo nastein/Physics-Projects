@@ -1,0 +1,85 @@
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/run/initialize
+
+/g4PSI/run/rootfile ./beam_particle_decay/beam_pi_plus_115_MeV.root
+/gun/mode/beamline
+/gun/particle pi+
+/gun/beam_momentum 115 GeV
+/run/beamOn 250000
+
+/g4PSI/run/rootfile ./beam_particle_decay/beam_pi_plus_153_MeV.root
+/gun/mode/beamline
+/gun/particle pi+
+/gun/beam_momentum 153 GeV
+/run/beamOn 250000
+
+/g4PSI/run/rootfile ./beam_particle_decay/beam_pi_plus_210_MeV.root
+/gun/mode/beamline
+/gun/particle pi+
+/gun/beam_momentum 210 GeV
+/run/beamOn 250000
+
+
+/g4PSI/run/rootfile ./beam_particle_decay/beam_pi_minus_115_MeV.root
+/gun/mode/beamline
+/gun/particle pi-
+/gun/beam_momentum 115 GeV
+/run/beamOn 250000
+
+/g4PSI/run/rootfile ./beam_particle_decay/beam_pi_minus_153_MeV.root
+/gun/mode/beamline
+/gun/particle pi-
+/gun/beam_momentum 153 GeV
+/run/beamOn 250000
+
+/g4PSI/run/rootfile ./beam_particle_decay/beam_pi_minus_210_MeV.root
+/gun/mode/beamline
+/gun/particle pi-
+/gun/beam_momentum 210 GeV
+/run/beamOn 250000
+
+
+
+
+
+/g4PSI/run/rootfile ./beam_particle_decay/beam_mu_minus_115_MeV.root
+/gun/mode/beamline
+/gun/particle mu-
+/gun/beam_momentum 115 GeV
+/run/beamOn 1000000
+
+/g4PSI/run/rootfile ./beam_particle_decay/beam_mu_minus_153_MeV.root
+/gun/mode/beamline
+/gun/particle mu-
+/gun/beam_momentum 153 GeV
+/run/beamOn 1000000
+
+/g4PSI/run/rootfile ./beam_particle_decay/beam_mu_minus_210_MeV.root
+/gun/mode/beamline
+/gun/particle mu-
+/gun/beam_momentum 210 GeV
+/run/beamOn 1000000
+
+/g4PSI/run/rootfile ./beam_particle_decay/beam_mu_plus_115_MeV.root
+/gun/mode/beamline
+/gun/particle mu+
+/gun/beam_momentum 115 GeV
+/run/beamOn 1000000
+
+/g4PSI/run/rootfile ./beam_particle_decay/beam_mu_plus_153_MeV.root
+/gun/mode/beamline
+/gun/particle mu+
+/gun/beam_momentum 153 GeV
+/run/beamOn 1000000
+
+/g4PSI/run/rootfile ./beam_particle_decay/beam_mu_plus_210_MeV.root
+/gun/mode/beamline
+/gun/particle mu+
+/gun/beam_momentum 210 GeV
+/run/beamOn 1000000
+
+
