@@ -1,0 +1,29 @@
+OBtil := Block[{mu,nu},
+ExpandIndices[ - Bmunu[mu,nu] Btilde[mu,nu] ALP/fa , FlavorExpand -> SU2D]
+];
+
+OWtil := Block[{mu,nu},
+ExpandIndices[ - 2 * Tr[Wmunumatrix[mu,nu].Wtildematrix[mu,nu]] ALP/fa , FlavorExpand -> SU2D]
+];
+
+OGtil := Block[{mu,nu,ro,sig,aa},
+ExpandIndices[ - Eps[mu,nu,ro,sig]/2 FS[G,mu,nu,aa] FS[G,ro,sig,aa] ALP/fa , FlavorExpand -> SU2D]
+];
+
+(* the operator O_aPhi is defined in the fermionic form (using EOMs) *)
+
+LY := Block[{sp,ii,ff1,ff2,ff3,aa,feynmangaugerules},
+    feynmangaugerules = If[Not[FeynmanGauge], {G0|GP|GPbar ->0}, {}];
+
+   ExpandIndices[(
+    yd[ff2, ff3] CKM[ff1, ff2] QLbar[sp, ii, ff1, aa].dR [sp, ff3, aa] Phi[ii] +
+    yl[ff1, ff3] LLbar[sp, ii, ff1].lR [sp, ff3] Phi[ii] -
+    yu[ff1, ff2] QLbar[sp, ii, ff1, aa].uR [sp, ff2, aa] Phibar[jj] Eps[ii, jj]
+    ), FlavorExpand->{SU2D,SU2W}]/.feynmangaugerules
+];
+
+OaPhi := -I LY ALP/fa + HC[ -I LY ALP/fa];
+
+
+LAlp1 := CBtil OBtil;
+

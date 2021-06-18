@@ -1,0 +1,99 @@
+\documentclass[aps,onecolumn,twoside,secnumarabic,balancelastpage,amsmath,amssymb,nofootinbib,hyperref=pdftex]{revtex4}
+
+
+\usepackage{color}         % produces boxes or entire pages with colored backgrounds
+\usepackage{graphics}      % standard graphics specifications
+\usepackage[pdftex]{graphicx}      % alternative graphics specifications
+\usepackage{longtable}     % helps with long table options
+\usepackage[english]{babel}
+\setlength{\parskip}{1em}
+\usepackage{amsmath}
+\usepackage{epsf}          % old package handles encapsulated post script issues
+\usepackage{bm}            % special 'bold-math' package
+\usepackage{verbatim}			% for comment environment
+\usepackage[colorlinks=true]{hyperref}  % this package should be added after all others % use as follows: \url{http://web.mit.edu/8.13}                                    
+                                  
+
+\begin{document}
+\title{}
+\author         {Noah Steinberg}
+\email          {nastein@umich.edu}
+\date{\today}
+\affiliation{University of Michigan - Physics}
+
+\maketitle
+
+\section{RS model with $\Lambda_{\text{IR}} = \Lambda_{\text{seesaw}}$}
+We would like to study the RS model with the modification that we allow the cutoff on the IR brane to be $\gg$ TeV. Obviously this has implications for the hierarchy problem, but let us assume that this is solved by some other mechanism (supersymmetry, etc..). Instead we will take the $\Lambda_{\text{IR}}$ to be the seesaw scale, $10^{12} - 10^{14}$ GeV. This scale is supposed to be related to the fundamental planck scale by $M_{\text{pl}} = M_{\text{seesaw}}e^{-\pi kR}$ where k is related to the curvature of the AdS space and R is the radius of the orbifolded circle that the extra dimension is compactified on. This tells us that kR $\approx 3 - 4$, in contrast to the original RS model which had kR $\approx 11 - 12$. Let's examine the phenomenology of such a model. 
+
+\section{Fermion masses}
+
+Fermions living in the bulk can be used to address the fermion mass hierarchy. For each fermion flavour \textit{i}, we have two 5d Dirac fermions $\Psi_{iL}$, and $\Psi_{iR}$ while the Higgs will be localized to the IR brane (other scenarios where the Higgs lives in the bulk can be constructed but will not be considered here). The 5d yukawa interaction will then be
+
+\begin{equation}
+\int d^{4}x\int dy\sqrt{-g} \lambda^{(5)}_{ij}H(x)(\bar{\Psi}_{iL}(x,y)\Psi_{jR}(x,y) + \text{h.c.})\delta(y - \pi R)
+\end{equation}
+
+Inserting the KK decomposition and looking only at the fermion zero modes we find the four dimensional yukawa interaction responsible for the zero mode masses:
+
+\begin{equation}
+\int d^{4}x\lambda_{ij}H(x)(\bar{\Psi}^{(0)}_{iL}(x,y)\Psi^{(0)}_{jR}(x,y) + \text{h.c.}).
+\end{equation}
+
+The four dimensional yukawa coupling depends on the bulk mass terms parameterized by $c_{iL}$ and $c_{iR}$ as
+
+\begin{equation}
+\lambda_{ij} = \frac{\lambda^{(5)}_{ij}k}{N_{iL}N_{jR}}e^{(1 - c_{iL} - c_{jR}\pi kR)}; \frac{1}{N^{2}_{iL/R}} = \frac{1/2 - c_{iL/R}}{e^{(1-2c_{iL/R})} - 1}
+\end{equation}
+
+If we assume for simplicity sake that $\lambda^{(5)}_{ij}k \approx 1$ and $c_{iL} = c_{iR}$ then we can calculate the yukawa couplings for different values of the bulk mass parameter and compare these to the observed yukawa values. We see that realistic values for fermion yukawa couplings can be achieved for $c_{iL} > 1/2$ for all fermions besides the top quark which requires $c_{iL} \approx -1/2$.
+
+\section{Gauge boson KK mode coupling to fermions}
+
+With fermions residing in the bulk, it is necessary for gauge invariance that the gauge bosons must also reside in the bulk. In this case, coupling of the fermion zero modes to the higher KK gauge boson modes is severely constrained by experimental data. Consider the 5d gauge coupling between the 5d Z boson and a 5d fermion $\Psi$:
+
+\begin{equation}
+\int d^{4}x\int dy \sqrt{-g}\bar{\Psi}(x,y)i\gamma^{\mu}Z_{\mu}(x,y)\Psi(x,y),
+\end{equation}
+
+Here $\Psi$ carries gauge quantum numbers appropriate for it's coupling to $Z^{0}_{\mu}$, the SM Z boson, and has a 5d mass parameter c. After inserting the KK expansion for the Z and keeping only the zero mode for the fermion, we find that the coupling to the $\text{n}^{\text{th}}$ Z boson is
+
+\begin{equation}
+g^{(n)} = g\left(\frac{(\frac{1}{2} - c)}{e^{2\pi kR(\frac{1}{2} - c)} - 1}\right) \frac{k}{N_{n}}\int_{0}^{\pi R}dy e^{(1-2c)ky}[J_{1}(\frac{m_{n}e^{ky}}{k}) + b_{1}(m_{n})Y_{1}(\frac{m_{n}e^{ky}}{k})]
+\end{equation}
+
+with $g = \frac{g_{5}}{\sqrt{2\pi R}}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proton decay in RS model}
+
+A generic four fermion operator in the full 5D theory takes the form:
+
+\begin{equation}
+\int d^{4}x\int dy\sqrt{-g}\frac{1}{M_{5}^{3}}\bar{\Psi}_{i}\Psi_{j}\bar{\Psi}_{k}\Psi_{l}
+\end{equation}
+
+where $M_{5}$ is related to the planck scale by $M_{5}^{3} = M_{pl}^{2}k/(1 - e^{2\pi kR})$. By expanding each fermion field into KK modes and looking at only the 0 modes, this four fermion operator becomes
+
+\begin{equation}
+\int d^{4}x\frac{1}{M_{4}^{2}}\bar{\Psi}^{(0)}_{i}\Psi^{(0)}_{j}\bar{\Psi}^{(0)}_{k}\Psi^{(0)}_{l}
+\end{equation}
+
+where the effective four dimensional mass scale $M_{4}$ is given by
+
+\begin{equation}
+\frac{1}{M_{4}^{2}} = \frac{2(1-e^{-2\pi kR})}{M_{pl}^{2}}\frac{1}{N_{i}N_{j}N_{k}N_{l}}\frac{e^{(4 - c_i - c_j - c_k - c_l)\pi kR} - 1}{4 - c_i - c_j - c_k - c_l}
+\end{equation}
+
+where the $N_i$ are normalization coefficients for the zero mode fermions, and the $c_i$ are 5 dimensional mass parameters which control the localization of the fermions in the 5th dimension and therefore the overlap of fermions with the Higgs field. The light fermions relevant for proton decay are required to have (with kR given above) c's $>$ 1/2 ($c_{e} \approx 1.1, c_{u} \approx 1, c_{s} \approx .83$).
+
+\end{document}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+\documentclass[aps,onecolumn,twoside,secnumarabic,balancelastpage,amsmath,amssymb,nofootinbib,hyperref=pdftex]{revtex4}
+
+
+\usepackage{color}         % produces boxes or entire pages with colored backgrounds
+\usepackage{graphics}      % standard graphics specifications
+\usepackage[pdftex]{graphicx}      % alternative graphics specifications
+\usepackage{longtable}     % helps with long table options
+\usepackage[english]{babel}
+\setlength{\parskip}{1em}
+\usepackage{amsmath}
+\usepackage{epsf}          % old package handles encapsulated post script issues
+\usepackage{bm}            % special 'bold-math' package
+\usepackage{verbatim}			% for comment environment
+\usepackage[colorlinks=true]{hyperref}  % this package should be added after all others % use as follows: \url{http://web.mit.edu/8.13}                                    
+                                  
+
+\begin{document}
+\title{}
+\author         {Noah Steinberg}
+\email          {nastein@umich.edu}
+\date{\today}
+\affiliation{University of Michigan - Physics}
+
+\maketitle
+
+\section{SO(10) Flavor Symmetry}
+In an SO(10) GUT, all the fermions of one generation belong to a single spinorial representation of SO(10), the 16. The minimal SO(10) yukawa interactions are given by:
+
+\begin{equation}
+\mathcal{L}_{\text{Yukawa}} = Y^{ij}_{10}16_{i}H_{10}16_{j} + Y^{ij}_{10}16_{i}H_{\bar{126}}16_{j} + Y^{ij}_{10}16_{i}H_{120}16_{j}
+\end{equation}
+
+Here we have suppressed SO(10) indices, $Y_{10}$ and $Y_{\bar{126}}$ are symmetric matrices and $Y_{120}$ is antisymmetric. This is the minimal content necessary to accommodate realistic fermion masses and mixing as well as SO(10) breaking. In the absence of yukawa interactions, there is an SU(3) flavor symmetry which mixes the three generations of fermions, with the 16 transforming as a triplet. The yukawas break this symmetry explicitly, but it can be restored promoting the yukawas to spurions which appropriately transform under SU(3) as to restore the symmetry.   
+
+\end{document}

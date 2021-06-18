@@ -1,0 +1,56 @@
+(* ************************** *)
+(* *****   Parameters   ***** *)
+(* ************************** *)
+M$Parameters = {
+
+(* ALP suppression scale. Default: 1 TeV *)
+
+  fa == {
+    ParameterType    -> External,
+    BlockName	     -> ALPPARS,
+    ComplexParameter -> False,
+    Value	     -> 1000,
+    TeX		     -> Subscript[f,a],
+    Description	     -> "ALP scale"
+  },
+
+(* Wilson coefficients *)
+
+  CGtil == {
+    ParameterType    -> External,
+    BlockName	     -> ALPPARS,
+    Value	     -> 1.,
+    InteractionOrder -> {NP, 1},
+    ComplexParameter -> False,
+    TeX		     -> Subscript[c,OverTilde[G]]
+  },
+  CWtil == {
+    ParameterType    -> External,
+    BlockName	     -> ALPPARS,
+    Value	     -> 1.,
+    InteractionOrder -> {NP, 1},
+    ComplexParameter -> False,
+    TeX		     -> Subscript[c,OverTilde[W]]
+  },
+  CBtil == {
+    ParameterType    -> External,
+    BlockName	     -> ALPPARS,
+    Value	     -> 1.,
+    InteractionOrder -> {NP, 1},
+    ComplexParameter -> False,
+    TeX		     -> Subscript[c,OverTilde[B]]
+  },
+  CaPhi == {
+    ParameterType    -> External,
+    BlockName	     -> ALPPARS,
+    Value	     -> 1.,
+    InteractionOrder -> {NP, 1},
+    ComplexParameter -> False,
+    TeX		     -> Subscript[c,a\[Phi]]
+  },
+  Wax == {
+    ParameterType -> Internal,
+    Value -> (Ma^3)*(cw^4)/(4 * (fa^2) * Pi)
+  }
+
+};

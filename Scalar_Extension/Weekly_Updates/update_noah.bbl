@@ -1,0 +1,55 @@
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{1}
+
+\bibitem{Chawdhry:2019bji}
+H.~A. Chawdhry, M.~L. Czakon, A.~Mitov, and R.~Poncelet, ``{NNLO QCD
+  corrections to three-photon production at the LHC},''
+  \href{http://dx.doi.org/10.1007/JHEP02(2020)057}{{\em JHEP} {\bfseries 02}
+  (2020) 057},
+\href{http://arxiv.org/abs/1911.00479}{{\ttfamily arXiv:1911.00479 [hep-ph]}}.
+%%CITATION = ARXIV:1911.00479;%%.
+
+\bibitem{Aaboud:2018djx}
+{\bfseries ATLAS} Collaboration, M.~Aaboud {\em et~al.}, ``{A search for pairs
+  of highly collimated photon-jets in $pp$ collisions at $\sqrt{s}$ = 13 TeV
+  with the ATLAS detector},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.99.012008}{{\em Phys. Rev.}
+  {\bfseries D99} no.~1, (2019) 012008},
+\href{http://arxiv.org/abs/1808.10515}{{\ttfamily arXiv:1808.10515 [hep-ex]}}.
+%%CITATION = ARXIV:1808.10515;%%.
+
+\bibitem{Djouadi:1995gv}
+A.~Djouadi, J.~Kalinowski, and P.~Zerwas, ``{Two and three-body decay modes of
+  SUSY Higgs particles},'' \href{http://dx.doi.org/10.1007/s002880050121}{{\em
+  Z. Phys. C} {\bfseries 70} (1996) 435--448},
+  \href{http://arxiv.org/abs/hep-ph/9511342}{{\ttfamily arXiv:hep-ph/9511342}}.
+
+\bibitem{Uhlemann:2008pm}
+C.~Uhlemann and N.~Kauer, ``{Narrow-width approximation accuracy},''
+  \href{http://dx.doi.org/10.1016/j.nuclphysb.2009.01.022}{{\em Nucl. Phys. B}
+  {\bfseries 814} (2009) 195--211},
+  \href{http://arxiv.org/abs/0807.4112}{{\ttfamily arXiv:0807.4112 [hep-ph]}}.
+
+\bibitem{PDG}
+M.~T. et~al. (Particle Data~Group) {\em Phys. Rev. D 98, 030001 (2018)} .
+
+\bibitem{Aaltonen:2012jd}
+{\bfseries CDF} Collaboration, T.~Aaltonen {\em et~al.}, ``{Measurement of the
+  Cross Section for Prompt Isolated Diphoton Production Using the Full CDF Run
+  II Data Sample},''
+  \href{http://dx.doi.org/10.1103/PhysRevLett.110.101801}{{\em Phys. Rev.
+  Lett.} {\bfseries 110} no.~10, (2013) 101801},
+  \href{http://arxiv.org/abs/1212.4204}{{\ttfamily arXiv:1212.4204 [hep-ex]}}.
+
+\bibitem{eta_ATLAS}
+{\bfseries ATLAS} Collaboration, G.~Aad {\em et~al.}, ``{The ATLAS Experiment
+  at the CERN Large Hadron Collider},''
+  \href{http://dx.doi.org/10.1088/1748-0221/3/08/S08003}{{\em JINST} {\bfseries
+  3} (2008) S08003}.
+
+\bibitem{Ellis:2012zp}
+S.~D. Ellis, T.~S. Roy, and J.~Scholtz, ``{Phenomenology of Photon-Jets},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.87.014015}{{\em Phys. Rev. D}
+  {\bfseries 87} no.~1, (2013) 014015},
+  \href{http://arxiv.org/abs/1210.3657}{{\ttfamily arXiv:1210.3657 [hep-ph]}}.
+
+\end{thebibliography}\endgroup

@@ -1,0 +1,121 @@
+\documentclass[aps,onecolumn,twoside,secnumarabic,balancelastpage,amsmath,amssymb,nofootinbib,hyperref=pdftex]{revtex4}
+
+
+\usepackage{color}         % produces boxes or entire pages with colored backgrounds
+\usepackage{graphics}      % standard graphics specifications
+\usepackage[pdftex]{graphicx}      % alternative graphics specifications
+\usepackage{longtable}     % helps with long table options
+\usepackage[english]{babel}
+\setlength{\parskip}{1em}
+\usepackage{amsmath}
+\usepackage{epsf}          % old package handles encapsulated post script issues
+\usepackage{bm}            % special 'bold-math' package
+\usepackage{verbatim}			% for comment environment
+\usepackage[colorlinks=true]{hyperref}  % this package should be added after all others % use as follows: \url{http://web.mit.edu/8.13}                                    
+                                  
+
+\begin{document}
+\title{}
+\author         {Noah Steinberg}
+\email          {nastein@umich.edu}
+\date{\today}
+\affiliation{University of Michigan - Leinweber Center for Theoretical Physics}
+
+
+\maketitle
+
+\section{Minimal Flavor Violation: An Introduction}
+Constraints on CP violation and FCNC from low energy observables tell us that any new physics must have a highly non generic flavor structure. One flavor structure to envision for any new physics is that of Minimal Flavor Violation (MFV). In this scenario, all sources of flavor violation in new physics are proportional to powers of the standard model yukawa matrices, essentially the CKM matrix rules the strength of FCNC transitions beyond the standard model. A more detailed formulation is given below.
+
+In the absence of yukawa couplings, the standard model is invariant under the quark flavor group $\mathcal{G}_{q} = SU(3)_{Q} \times SU(3)_{U} \times SU(3)_{D}$. The yukawa couplings explicitly break this symmetry. Invariance under $\mathcal{G}_{q}$ can be restored by promoting the yukawa couplings $Y^{u}$ and $Y^{d}$ to spurions which transform appropriately under $\mathcal{G}_{q}$. The transformation properties of each of the fields and spurions is given below.
+
+\begin{equation}
+Q(3,1,1), U(1,3,1), D(1,1,3), Y^{d}(3,1,\bar{3}), Y^{u}(3,\bar{3},1) 
+\end{equation}
+
+For example, $Y^{u}$ transforms as a triplet under $SU(3)_{Q}$, anti-triplet under $SU(3)_{U}$, and singlet under $SU(3)_{D}$. The MFV criterion specifies that when considering higher dimensional operators, one should insert arbitrary powers of the Yukawa spurion fields to make these terms invariant under $\mathcal{G}_{q}$. An example higher dimensional operator with appropriate yukawas is given below
+
+\begin{equation}
+(\bar{Q}_{L}Y^{u}Y^{u\dagger}\gamma_{\mu}Q_{L})^{2}
+\end{equation}
+
+A significant simplification occurs if we work in the basis $Y^{d} = \lambda_d$ and $Y^{u} = V^{\dagger}\lambda_u$, where V is the CKM matrix, $\lambda_u = \text{diag}(y_d , y_s , y_b)$, and $\lambda_d = \text{diag}(y_u , y_c, y_t)$. Then for $i \neq j$, $(Y^{u}Y^{u\dagger})_{ij} \approx \lambda_{t}^{2}V^{*}_{3i}V_{3j}$, because the top yukawa is much larger than the other yukawas.
+
+Any higher dimensional operators that one encounters should be made invariant under $\mathcal{G}_q$ by insertion of spurions. Many insertions are possible, in fact an infinite number of them, leading to a spurion series. Once the higher dimensional oeprators are made invariant, the spurions can be frozen to their physical values by choosing, for example, $Y^{u} = \lambda_{u}$, $Y^{d} = V_{CKM}\lambda_{d}$. 
+
+\section{MFV for Baryon Number Violating Operators}
+
+Many GUT theories introduce sources of proton decay because quarks and leptons belong to the same GUT multiplets. After integrating out the heavy fields, one is left with, at lowest order, the Weinberg four fermion operators:
+
+\begin{equation}
+\mathcal{L}^{(6)}_{BNV} = \frac{QQQL + DUQL + QQUE + DUUE}{\Lambda^2}
+\end{equation}
+
+Unfortunately, these operators cannot be made invariant under $\mathcal{G}_q$ by insertion of spurions using the above procedure. The argument is given in \cite{Alonso}. Essentially no combination of yukawa matrices can change these operators into flavor singlets. 
+
+Can we modify our definition of MFV to account for these BNV operators? The answer is yes, but there are several different routes to take. 
+
+\subsection{MFV in SU(5) with Additional $H_{45}$}
+\cite{Barbieri} considers an SU(5) GUT augmented with a Higgs in the 45 dimensional representation of SU(5). The inclusion of an $H_{45}$ is necessary to account for the different charged lepton and down quark masses. Thus
+
+\begin{equation}
+\mathcal{L}_{\text{Yukawa}} = TY_{u}TH_{5} + TY_{1}\bar{F}H_{\bar{5}} + TY_{2}\bar{F}H_{45}
+\end{equation}
+
+where $T$ and $\bar{F}$ stand for the 10 and $\bar{5}$ reps. The flavor symmetry group which is broken by these yukawas is $\mathcal{G} = U(3)_{T} \times U(3)_{\bar{F}}$. The yukawas can be promoted to spurions transforming according to
+
+\begin{equation}
+Y_{u} = (\bar{6},1), Y_{1} = (\bar{3}, \bar{3}), Y_{2} = (\bar{3}, \bar{3})
+\end{equation}
+
+which makes the SU(5) yukawa lagrangian invariant. After integrating out the heavy particles one ends up with the usual SM yukawa interactions in terms of the yukawa matrices $\lambda_{u}$, $\lambda_{d}$, and $\lambda_{e}$. The SM fields and the SM yukawas each have definite transformation properties under $\mathcal{G}_{su5}$
+
+\begin{align}
+(Q_{L}, u^{*}_{R},e^{*}_{R}) &\rightarrow V_{T}(Q_L, u^{*}_{R},e^{*}_{R})\\
+(L_{L}, d^{*}_{R}) &\rightarrow V_{F}(L_{L}, d^{*}_{R}f)\\
+\lambda_{u} &\rightarrow V_{T}\lambda_{u}(V_{T})^{T}\\
+(\lambda_{d}^{T}, \lambda_{e}) &\rightarrow V_{F}(\lambda_{d}^{T}, \lambda_{e})(V_{T})^{T}
+\end{align}
+
+As before, these yukawas can be rotated into their physical values; $\lambda_{u} = \lambda^{D}_{u}$, $\lambda_{d} = V_{CKM}\lambda^{D}_{d}$, but $\lambda_{e} = V_{eF}\lambda^{D}_{e}(V_{eT})^{T}$, where $V_{eF}$ and $V_{eT}$ are unknown mixing matrices. This is the major departure of the GUT MFV implementation from the usual MFV implementation. Flavor violation is not just provided by the CKM matrix, but also by these new mixing matrices. 
+
+\subsection{MFV in SU(5) with Singlet Neutrinos}
+Another GUT MFV implementation given by \cite{Alonso} is provided by adding to our minimal SU(5), a right handed neutrino, N, which transforms as a singlet. This gives a flavor symmetry group $\mathcal{G} = U(3)_{T} \times U(3)_{\bar{F}} \times U(3)_{1}$. The spurions and left handed fermions fall into the following representations
+
+\begin{align}
+u^{c},q,e^{c}&(3,1,1)\\
+d^{c},l&(1,3,1)\\
+N^{c}&(1,1,3)\\
+Y_{u}&(\bar{6},1,1)\\
+Y_{d},Y^{T}_{e}&(\bar{3},\bar{3},1)\\
+Y_{N}&(1,\bar{3},\bar{3})\\
+M_{N}&(1,1,6)\\
+\end{align}
+
+where $M_{N}$ is the right handed neutrino Majorana mass.
+
+The yukawa insertions that make our BNV operators invariant under $\mathcal{G}$ are, to second order, as follows
+
+\begin{align}
+C^{duql} &: 1 \oplus Y^{\dagger}_{u}Y_{u} \oplus Y_{d}^{\dagger}Y_{d}\\
+C^{qqql} &: Y_{u} \otimes Y_{d}\\
+C^{duue} &: Y^{\dagger}_{u} \otimes Y_{d}^{\dagger}\\
+C^{qque} &: 1 \oplus Y_{u}Y_{u}^{\dagger} \oplus Y_{u}\otimesY^{\dagger}_{u}\\
+\end{align} 
+
+
+\section{How to proceed?}
+Given that the standard MFV construction cannot be applied to our BNV operators, the question becomes how do we want to proceed. If we use either of the GUT MFV implementations above, it seems we'd be tied down to a GUT, which feels like it goes against the very general idea we're trying to put out.  
+
+\begin{thebibliography}{9}
+
+\bibitem{Alonso}
+R. Alonso et al.,  "Renormalization group evolution of dimension-six
+baryon number violating operators", JHEP 1404 (2014) 159 arXiv:1312.2014 [hep-ph] CERN-PH-TH-2013-305
+\bibitem{Barbieri}
+R. Barbieri, F. Senia, "Minimal flavour violation and SU(5)-unification", Eur. Phys. J. C(2015) 75:602
+
+\end{thebibliography}
+
+
+\end{document}

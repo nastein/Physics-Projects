@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2019)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: NSSI.aux
+The style file: utphys.bst
+Database file #1: NSSI.bib
+Warning--empty pages in Altmannshofer:2018xyo
+You've used 28 entries,
+            2360 wiz_defined-function locations,
+            815 strings with 10354 characters,
+and the built_in function-call counts, 8806 in all, are:
+= -- 933
+> -- 282
+< -- 0
++ -- 105
+- -- 77
+* -- 799
+:= -- 997
+add.period$ -- 48
+call.type$ -- 28
+change.case$ -- 27
+chr.to.int$ -- 0
+cite$ -- 29
+duplicate$ -- 538
+empty$ -- 816
+format.name$ -- 77
+if$ -- 2294
+int.to.chr$ -- 0
+int.to.str$ -- 28
+missing$ -- 103
+newline$ -- 125
+num.names$ -- 28
+pop$ -- 147
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 391
+stack$ -- 0
+substring$ -- 295
+swap$ -- 289
+text.length$ -- 27
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 54
+width$ -- 30
+write$ -- 237
+(There was 1 warning)

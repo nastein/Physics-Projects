@@ -1,0 +1,13 @@
+Block SCALES
+1 10000	# UV scale [GeV]
+2 173.21	# EW scale [GeV]
+Block OPTIONS
+1 0	# CP Violation
+2 1	# Read RGEs
+3 1	# RGEs method
+4 0	# Export RGEs
+5 1	# Use SM RGEs
+6 0	#  Export SMEFTrunner results
+7 0	# Export EWmatcher results
+8 0	# Export WETrunner results
+9 1	# Type of input WCs

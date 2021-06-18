@@ -1,0 +1,870 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     32074,        861]
+NotebookOptionsPosition[     31124,        828]
+NotebookOutlinePosition[     31725,        851]
+CellTagsIndexPosition[     31682,        848]
+WindowFrame->Normal
+ContainsDynamic->False*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Plots for the Running of the Mixing Parameters and Masses", "Title"],
+
+Cell[TextData[{
+ "This notebook can be used to create plots of the RG evolution, ",
+ StyleBox["after",
+  FontWeight->"Bold"],
+ StyleBox[" the RGEs have been solved (RGESolve) in a different notebook.",
+  FontVariations->{"CompatibilityType"->0}]
+}], "Text"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"(*", " ", 
+    RowBox[{"Some", " ", "preliminary", " ", "graphics", " ", "definitions"}],
+     " ", "*)"}],
+   FontColor->RGBColor[0, 0, 1]], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Needs", "[", "\"\<REAP`RGEPlotUtilities`\>\"", "]"}], 
+   ";"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ToExpression", "[", 
+      RowBox[{
+       RowBox[{"Characters", "[", "$Version", "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "]"}], "<", "6"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Get", "[", "\"\<Graphics`FilledPlot`\>\"", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Get", "[", "\"\<Graphics`Colors`\>\"", "]"}]}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"ForestGreen", "=", 
+      RowBox[{"RGBColor", "[", 
+       RowBox[{"0.1", ",", "0.75", ",", "0.2"}], "]"}]}], ";"}]}], 
+   "\[IndentingNewLine]", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.435587848557613*^9, 3.435587856517888*^9}, {
+  3.435655531948548*^9, 3.435655544087432*^9}}],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  StyleBox[
+   RowBox[{"(*", " ", 
+    RowBox[{"Define", " ", "the", " ", "plot", " ", "region"}], " ", "*)"}],
+   FontColor->RGBColor[0, 0, 1]], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ClearAll", "[", 
+    RowBox[{"tmin", ",", "tmax"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tmin", "=", 
+     RowBox[{"Log", "[", 
+      RowBox[{"10", ",", "100"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tmax", "=", 
+     RowBox[{"Log", "[", 
+      RowBox[{"10", ",", 
+       RowBox[{"2", "*", 
+        RowBox[{"10", "^", "16"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   StyleBox[
+    RowBox[{"(*", " ", 
+     RowBox[{
+     "Define", " ", "the", " ", "functions", " ", "that", " ", "should", " ", 
+      "be", " ", "plotted"}], " ", "*)"}],
+    FontColor->RGBColor[0, 0, 1]], "\[IndentingNewLine]", 
+   RowBox[{"ClearAll", "[", 
+    RowBox[{"Mnu", ",", "Ye"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Mnu", "[", "mu_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"RGEGetSolution", "[", 
+      RowBox[{"mu", ",", "RGEM\[Nu]"}], "]"}], "//", "Chop"}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Ye", "[", "mu_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"RGEGetSolution", "[", 
+      RowBox[{"mu", ",", "RGEYe"}], "]"}], "//", "Chop"}]}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"ClearAll", "[", 
+    RowBox[{
+    "MixingPars", ",", "MixingParsLogScale", ",", "NuMasses", ",", 
+     "NuMassesLogScale"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"MixingPars", "[", "mu_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"MNSParameters", "[", 
+      RowBox[{
+       RowBox[{"Mnu", "[", "mu", "]"}], ",", 
+       RowBox[{"Ye", "[", "mu", "]"}]}], "]"}], "\[LeftDoubleBracket]", "1", 
+     "\[RightDoubleBracket]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"MixingParsLogScale", "[", "x_", "]"}], ":=", 
+    RowBox[{"MixingPars", "[", 
+     RowBox[{"10", "^", "x"}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"NuMasses", "[", "mu_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"MNSParameters", "[", 
+      RowBox[{
+       RowBox[{"Mnu", "[", "mu", "]"}], ",", 
+       RowBox[{"Ye", "[", "mu", "]"}]}], "]"}], "\[LeftDoubleBracket]", "2", 
+     "\[RightDoubleBracket]"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"NuMassesLogScale", "[", "x_", "]"}], ":=", 
+    RowBox[{"NuMasses", "[", 
+     RowBox[{"10", "^", "x"}], "]"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"ClearAll", "[", 
+    RowBox[{
+    "\[Theta]12", ",", "\[Theta]13", ",", "\[Theta]23", ",", "\[Delta]", ",", 
+     "\[CurlyPhi]1", ",", "\[CurlyPhi]2", ",", "m1", ",", "m2", ",", "m3", 
+     ",", "\[CapitalDelta]m2sol", ",", "\[CapitalDelta]m2atm"}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Theta]12", "[", "t_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"MixingParsLogScale", "[", "t", "]"}], "\[LeftDoubleBracket]", 
+      "1", "\[RightDoubleBracket]"}], "/", "Degree"}]}], "\n", 
+   RowBox[{
+    RowBox[{"\[Theta]13", "[", "t_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"MixingParsLogScale", "[", "t", "]"}], "\[LeftDoubleBracket]", 
+      "2", "\[RightDoubleBracket]"}], "/", "Degree"}]}], "\n", 
+   RowBox[{
+    RowBox[{"\[Theta]23", "[", "t_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"MixingParsLogScale", "[", "t", "]"}], "\[LeftDoubleBracket]", 
+      "3", "\[RightDoubleBracket]"}], "/", "Degree"}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Delta]", "[", "t_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"MixingParsLogScale", "[", "t", "]"}], "\[LeftDoubleBracket]", 
+      "4", "\[RightDoubleBracket]"}], "/", "Degree"}]}], "\n", 
+   RowBox[{
+    RowBox[{"\[CurlyPhi]1", "[", "t_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"MixingParsLogScale", "[", "t", "]"}], "\[LeftDoubleBracket]", 
+      "8", "\[RightDoubleBracket]"}], "/", "Degree"}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[CurlyPhi]2", "[", "t_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"MixingParsLogScale", "[", "t", "]"}], "\[LeftDoubleBracket]", 
+      "9", "\[RightDoubleBracket]"}], "/", "Degree"}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"m1", "[", "t_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"NuMassesLogScale", "[", "t", "]"}], "\[LeftDoubleBracket]", "1",
+      "\[RightDoubleBracket]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"m2", "[", "t_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"NuMassesLogScale", "[", "t", "]"}], "\[LeftDoubleBracket]", "2",
+      "\[RightDoubleBracket]"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"m3", "[", "t_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"NuMassesLogScale", "[", "t", "]"}], "\[LeftDoubleBracket]", "3",
+      "\[RightDoubleBracket]"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[CapitalDelta]m2sol", "[", "t_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"m2", "[", "t", "]"}], "^", "2"}], "-", 
+     RowBox[{
+      RowBox[{"m1", "[", "t", "]"}], "^", "2"}]}]}], "\n", 
+   RowBox[{
+    RowBox[{"\[CapitalDelta]m2atm", "[", "t_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"m3", "[", "t", "]"}], "^", "2"}], "-", 
+     RowBox[{
+      RowBox[{"m2", "[", "t", "]"}], "^", "2"}]}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   StyleBox[
+    RowBox[{"(*", " ", 
+     RowBox[{"Positions", " ", "of", " ", "the", " ", "thresholds"}], " ", 
+     "*)"}],
+    FontColor->RGBColor[0, 0, 1]], "\[IndentingNewLine]", 
+   RowBox[{"ClearAll", "[", 
+    RowBox[{"M1", ",", "M2", ",", "M3", ",", "ShadowEFT"}], "]"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"M1", ",", "M2", ",", "M3"}], "}"}], "=", 
+     RowBox[{
+      RowBox[{"RGEGetTransitions", "[", "]"}], "\[LeftDoubleBracket]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"4", ",", "3", ",", "2"}], "}"}], ",", "1"}], 
+      "\[RightDoubleBracket]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ShadowEFT", "=", 
+     RowBox[{"RGEShadowEFT", "[", 
+      RowBox[{"M1", ",", "M2", ",", "M3", ",", 
+       SuperscriptBox["10", "17"]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Draw", " ", "the", " ", "plot", " ", "for", " ", "the", " ", "mixing", 
+     " ", "angles"}], " ", "*)"}],
+   FontColor->RGBColor[0, 0, 1]], "\[IndentingNewLine]", 
+  RowBox[{"Show", "[", 
+   RowBox[{
+    RowBox[{"Plot", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\[Theta]12", "[", "t", "]"}], ",", 
+        RowBox[{"\[Theta]13", "[", "t", "]"}], ",", 
+        RowBox[{"\[Theta]23", "[", "t", "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "tmin", ",", "tmax"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ImageSize", "\[Rule]", "400"}], ",", 
+      RowBox[{"FrameLabel", "->", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(log\), \(10\)]\)(\[Mu]/GeV)\>\"", ",", 
+         "\"\<\>\""}], "}"}]}], ",", 
+      RowBox[{"FrameTicks", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"RGELogTicksLabeled", "[", 
+          RowBox[{"2", ",", "19"}], "]"}], ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"i", "*", "15"}], ",", 
+             RowBox[{
+              RowBox[{"ToString", "[", 
+               RowBox[{"i", "*", "15"}], "]"}], "<>", "\"\<\[Degree]\>\""}]}],
+             "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "0", ",", "3"}], "}"}]}], "]"}], ",", 
+         RowBox[{"RGELogTicks", "[", 
+          RowBox[{"2", ",", "19"}], "]"}], ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"i", "*", "15"}], ",", "\"\<\>\""}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "0", ",", "3"}], "}"}]}], "]"}]}], "}"}]}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"PlotRange", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"All", ",", "All"}], "}"}]}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"Red", ",", "ForestGreen", ",", "Blue"}], "}"}]}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Prolog", "\[Rule]", 
+       RowBox[{"{", "ShadowEFT", "}"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Epilog", "\[Rule]", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Text", "[", 
+          RowBox[{
+           RowBox[{"StyleForm", "[", 
+            RowBox[{
+             SubscriptBox["\[Theta]", "12"], ",", 
+             RowBox[{"FontColor", "\[Rule]", "Red"}], ",", 
+             RowBox[{"FontSize", "\[Rule]", "12"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"tmin", ",", 
+             RowBox[{"\[Theta]12", "[", "tmin", "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.8"}], ",", "1.4"}], "}"}]}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Text", "[", 
+          RowBox[{
+           RowBox[{"StyleForm", "[", 
+            RowBox[{
+             SubscriptBox["\[Theta]", "13"], ",", 
+             RowBox[{"FontColor", "\[Rule]", "ForestGreen"}], ",", 
+             RowBox[{"FontSize", "\[Rule]", "12"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"tmin", ",", 
+             RowBox[{"\[Theta]13", "[", "tmin", "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.8"}], ",", 
+             RowBox[{"-", "1"}]}], "}"}]}], "]"}], ",", "\[IndentingNewLine]",
+          
+         RowBox[{"Text", "[", 
+          RowBox[{
+           RowBox[{"StyleForm", "[", 
+            RowBox[{
+             SubscriptBox["\[Theta]", "23"], ",", 
+             RowBox[{"FontColor", "\[Rule]", "Blue"}], ",", 
+             RowBox[{"FontSize", "\[Rule]", "12"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"tmin", ",", 
+             RowBox[{"\[Theta]23", "[", "tmin", "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.8"}], ",", "1.4"}], "}"}]}], "]"}]}], "}"}]}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"DisplayFunction", "\[Rule]", "Identity"}]}], 
+     "\[IndentingNewLine]", "]"}], ",", 
+    RowBox[{"DisplayFunction", "\[Rule]", "$DisplayFunction"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.436085031323138*^9, 3.436085044178268*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Draw", " ", "the", " ", "plot", " ", "for", " ", "the", " ", "phases"}], 
+    " ", "*)"}],
+   FontColor->RGBColor[0, 0, 1]], "\[IndentingNewLine]", 
+  RowBox[{"Show", "[", 
+   RowBox[{
+    RowBox[{"Plot", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\[Delta]", "[", "t", "]"}], ",", 
+        RowBox[{"\[CurlyPhi]1", "[", "t", "]"}], ",", 
+        RowBox[{"\[CurlyPhi]2", "[", "t", "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "tmin", ",", "tmax"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ImageSize", "\[Rule]", "400"}], ",", 
+      RowBox[{"FrameLabel", "->", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(log\), \(10\)]\)(\[Mu]/GeV)\>\"", ",", 
+         "\"\<\>\""}], "}"}]}], ",", 
+      RowBox[{"FrameTicks", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"RGELogTicksLabeled", "[", 
+          RowBox[{"2", ",", "19"}], "]"}], ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"i", "*", "45"}], ",", 
+             RowBox[{
+              RowBox[{"ToString", "[", 
+               RowBox[{"i", "*", "45"}], "]"}], "<>", "\"\<\[Degree]\>\""}]}],
+             "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "0", ",", "8"}], "}"}]}], "]"}], ",", 
+         RowBox[{"RGELogTicks", "[", 
+          RowBox[{"2", ",", "19"}], "]"}], ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"i", "*", "45"}], ",", "\"\<\>\""}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "0", ",", "12"}], "}"}]}], "]"}]}], "}"}]}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"PlotRange", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"All", ",", "All"}], "}"}]}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"Red", ",", "Blue", ",", "ForestGreen"}], "}"}]}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Prolog", "\[Rule]", 
+       RowBox[{"{", "ShadowEFT", "}"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Epilog", "\[Rule]", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Text", "[", 
+          RowBox[{
+           RowBox[{"StyleForm", "[", 
+            RowBox[{"\[Delta]", ",", 
+             RowBox[{"FontColor", "\[Rule]", "Red"}], ",", 
+             RowBox[{"FontSize", "\[Rule]", "12"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"tmin", ",", 
+             RowBox[{"\[Delta]", "[", "tmin", "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.8"}], ",", "1.4"}], "}"}]}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Text", "[", 
+          RowBox[{
+           RowBox[{"StyleForm", "[", 
+            RowBox[{
+             SubscriptBox["\[CurlyPhi]", "1"], ",", 
+             RowBox[{"FontColor", "\[Rule]", "Blue"}], ",", 
+             RowBox[{"FontSize", "\[Rule]", "12"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"tmin", ",", 
+             RowBox[{"\[CurlyPhi]1", "[", "tmin", "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.8"}], ",", "1.4"}], "}"}]}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Text", "[", 
+          RowBox[{
+           RowBox[{"StyleForm", "[", 
+            RowBox[{
+             SubscriptBox["\[CurlyPhi]", "2"], ",", 
+             RowBox[{"FontColor", "\[Rule]", "ForestGreen"}], ",", 
+             RowBox[{"FontSize", "\[Rule]", "12"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"tmin", ",", 
+             RowBox[{"\[CurlyPhi]2", "[", "tmin", "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.8"}], ",", 
+             RowBox[{"-", "1"}]}], "}"}]}], "]"}]}], "}"}]}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"DisplayFunction", "\[Rule]", "Identity"}]}], 
+     "\[IndentingNewLine]", "]"}], ",", 
+    RowBox[{"DisplayFunction", "\[Rule]", "$DisplayFunction"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.436085053698209*^9, 3.436085057270277*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Draw", " ", "the", " ", "plot", " ", "for", " ", "the", " ", "mass", " ",
+      "eigenvalues"}], " ", "*)"}],
+   FontColor->RGBColor[0, 0, 1]], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"tlabel", "=", "4"}], ";"}], "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"Position", " ", "where", " ", "the", " ", "labels", " ", "m1"}],
+      ",", "m2", ",", 
+     RowBox[{"m3", " ", "should", " ", "be", " ", "placed"}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Show", "[", 
+    RowBox[{
+     RowBox[{"Plot", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"m1", "[", "t", "]"}], ",", 
+         RowBox[{"m2", "[", "t", "]"}], ",", 
+         RowBox[{"m3", "[", "t", "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "tmin", ",", "tmax"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ImageSize", "\[Rule]", "400"}], ",", 
+       RowBox[{"FrameLabel", "->", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<\!\(\*SubscriptBox[\(log\), \(10\)]\)(\[Mu]/GeV)\>\"", ",", 
+          "\"\<\!\(\*SubscriptBox[\(m\), \(i\)]\) [eV]\>\""}], "}"}]}], ",", 
+       RowBox[{"FrameTicks", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"RGELogTicksLabeled", "[", 
+           RowBox[{"2", ",", "19"}], "]"}], ",", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"i", "*", "0.01"}], ",", 
+              RowBox[{"PaddedForm", "[", 
+               RowBox[{
+                RowBox[{"i", "*", "0.01"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"3", ",", "2"}], "}"}]}], "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", "0", ",", "50"}], "}"}]}], "]"}], ",", 
+          RowBox[{"RGELogTicks", "[", 
+           RowBox[{"2", ",", "19"}], "]"}], ",", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"i", "*", "0.01"}], ",", "\"\<\>\""}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", "0", ",", "50"}], "}"}]}], "]"}]}], "}"}]}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{"PlotRange", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"All", ",", "All"}], "}"}]}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", "Blue", ",", "ForestGreen"}], "}"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Prolog", "\[Rule]", 
+        RowBox[{"{", "ShadowEFT", "}"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Epilog", "\[Rule]", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"StyleForm", "[", 
+             RowBox[{
+              SubscriptBox["m", "1"], ",", 
+              RowBox[{"FontColor", "\[Rule]", "Red"}], ",", 
+              RowBox[{"FontSize", "\[Rule]", "12"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"tlabel", ",", 
+              RowBox[{"m1", "[", "tlabel", "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.8"}], ",", "1.4"}], "}"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"StyleForm", "[", 
+             RowBox[{
+              SubscriptBox["m", "2"], ",", 
+              RowBox[{"FontColor", "\[Rule]", "Blue"}], ",", 
+              RowBox[{"FontSize", "\[Rule]", "12"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"tlabel", ",", 
+              RowBox[{"m2", "[", "tlabel", "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.8"}], ",", 
+              RowBox[{"-", "2"}]}], "}"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"StyleForm", "[", 
+             RowBox[{
+              SubscriptBox["m", "3"], ",", 
+              RowBox[{"FontColor", "\[Rule]", "ForestGreen"}], ",", 
+              RowBox[{"FontSize", "\[Rule]", "12"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"tlabel", ",", 
+              RowBox[{"m3", "[", "tlabel", "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.8"}], ",", "1.4"}], "}"}]}], "]"}]}], "}"}]}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{"DisplayFunction", "\[Rule]", "Identity"}]}], 
+      "\[IndentingNewLine]", "]"}], ",", 
+     RowBox[{"DisplayFunction", "\[Rule]", "$DisplayFunction"}]}], 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.436085066913046*^9, 3.436085067704411*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Draw", " ", "the", " ", "plot", " ", "for", " ", "the", " ", "mass", " ",
+      "squared", " ", "differences", " ", 
+     RowBox[{"(", 
+      RowBox[{"on", " ", "a", " ", "logarithmic", " ", "scale"}], ")"}]}], 
+    " ", "*)"}],
+   FontColor->RGBColor[0, 0, 1]], "\[IndentingNewLine]", 
+  RowBox[{"Show", "[", 
+   RowBox[{
+    RowBox[{"Plot", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Log", "[", 
+         RowBox[{"10", ",", 
+          RowBox[{"Abs", "[", 
+           RowBox[{"\[CapitalDelta]m2sol", "[", "t", "]"}], "]"}]}], "]"}], 
+        ",", 
+        RowBox[{"Log", "[", 
+         RowBox[{"10", ",", 
+          RowBox[{"Abs", "[", 
+           RowBox[{"\[CapitalDelta]m2atm", "[", "t", "]"}], "]"}]}], "]"}]}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "tmin", ",", "tmax"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ImageSize", "\[Rule]", "400"}], ",", 
+      RowBox[{"FrameLabel", "->", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(log\), \(10\)]\)(\[Mu]/GeV)\>\"", ",", 
+         "\"\<\!\(\*SubsuperscriptBox[\(\[CapitalDelta]m\), \(i\), \(2\)]\) [\
+\!\(\*SuperscriptBox[\(eV\), \(2\)]\)]\>\""}], "}"}]}], ",", 
+      RowBox[{"FrameTicks", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"RGELogTicksLabeled", "[", 
+          RowBox[{"2", ",", "19"}], "]"}], ",", 
+         RowBox[{"RGELogTicksLabeledNegExp", "[", 
+          RowBox[{
+           RowBox[{"-", "6"}], ",", 
+           RowBox[{"-", "1"}]}], "]"}], ",", 
+         RowBox[{"RGELogTicks", "[", 
+          RowBox[{"2", ",", "19"}], "]"}], ",", 
+         RowBox[{"RGELogTicks", "[", 
+          RowBox[{
+           RowBox[{"-", "6"}], ",", 
+           RowBox[{"-", "1"}]}], "]"}]}], "}"}]}], ",", "\[IndentingNewLine]",
+       
+      RowBox[{"PlotRange", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"All", ",", "All"}], "}"}]}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"ForestGreen", ",", "Blue"}], "}"}]}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Prolog", "\[Rule]", 
+       RowBox[{"{", "ShadowEFT", "}"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Epilog", "\[Rule]", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Text", "[", 
+          RowBox[{
+           RowBox[{"StyleForm", "[", 
+            RowBox[{
+             SubsuperscriptBox["\[CapitalDelta]m", "sol", "2"], ",", 
+             RowBox[{"FontColor", "\[Rule]", "ForestGreen"}], ",", 
+             RowBox[{"FontSize", "\[Rule]", "12"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"tmin", ",", 
+             RowBox[{"Log", "[", 
+              RowBox[{"10", ",", 
+               RowBox[{"Abs", "[", 
+                RowBox[{"\[CapitalDelta]m2sol", "[", "tmin", "]"}], "]"}]}], 
+              "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.8"}], ",", 
+             RowBox[{"-", "2"}]}], "}"}]}], "]"}], ",", "\[IndentingNewLine]",
+          
+         RowBox[{"Text", "[", 
+          RowBox[{
+           RowBox[{"StyleForm", "[", 
+            RowBox[{
+             SubsuperscriptBox["\[CapitalDelta]m", "atm", "2"], ",", 
+             RowBox[{"FontColor", "\[Rule]", "Blue"}], ",", 
+             RowBox[{"FontSize", "\[Rule]", "12"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"tmin", ",", 
+             RowBox[{"Log", "[", 
+              RowBox[{"10", ",", 
+               RowBox[{"Abs", "[", 
+                RowBox[{"\[CapitalDelta]m2atm", "[", "tmin", "]"}], "]"}]}], 
+              "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.8"}], ",", "1.4"}], "}"}]}], "]"}]}], "}"}]}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"DisplayFunction", "\[Rule]", "Identity"}]}], 
+     "\[IndentingNewLine]", "]"}], ",", 
+    RowBox[{"DisplayFunction", "\[Rule]", "$DisplayFunction"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.436085078169314*^9, 3.436085079707715*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Draw", " ", "the", " ", "plot", " ", "for", " ", "the", " ", "solar", 
+     " ", "mass", " ", "squared", " ", "difference", " ", 
+     RowBox[{"(", 
+      RowBox[{"on", " ", "a", " ", "linear", " ", "scale"}], ")"}]}], " ", 
+    "*)"}],
+   FontColor->RGBColor[0, 0, 1]], "\[IndentingNewLine]", 
+  RowBox[{"Show", "[", 
+   RowBox[{
+    RowBox[{"Plot", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[CapitalDelta]m2sol", "[", "t", "]"}], "*", 
+       RowBox[{"10", "^", "5"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "tmin", ",", "tmax"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ImageSize", "\[Rule]", "400"}], ",", 
+      RowBox[{"FrameLabel", "->", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(log\), \(10\)]\)(\[Mu]/GeV)\>\"", ",", 
+         "\"\<\!\(\*SubsuperscriptBox[\(\[CapitalDelta]m\), \(sol\), \(2\)]\) \
+[\!\(\*SuperscriptBox[\(10\), \
+\(-5\)]\)\[ThinSpace]\!\(\*SuperscriptBox[\(eV\), \(2\)]\)]\>\""}], "}"}]}], 
+      ",", 
+      RowBox[{"FrameTicks", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"RGELogTicksLabeled", "[", 
+          RowBox[{"2", ",", "19"}], "]"}], ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"i", ",", "i"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", 
+             RowBox[{"-", "100"}], ",", "100"}], "}"}]}], "]"}], ",", 
+         RowBox[{"RGELogTicks", "[", 
+          RowBox[{"2", ",", "19"}], "]"}], ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"i", ",", "\"\<\>\""}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", 
+             RowBox[{"-", "100"}], ",", "100"}], "}"}]}], "]"}]}], "}"}]}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"PlotRange", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"All", ",", "All"}], "}"}]}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", 
+       RowBox[{"{", "ForestGreen", "}"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Prolog", "\[Rule]", 
+       RowBox[{"{", "ShadowEFT", "}"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{"DisplayFunction", "\[Rule]", "Identity"}]}], 
+     "\[IndentingNewLine]", "]"}], ",", 
+    RowBox[{"DisplayFunction", "\[Rule]", "$DisplayFunction"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.436085085621465*^9, 3.436085087304071*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Draw", " ", "the", " ", "plot", " ", "for", " ", "the", " ", 
+     "atmospheric", " ", "mass", " ", "squared", " ", "difference", " ", 
+     RowBox[{"(", 
+      RowBox[{"on", " ", "a", " ", "linear", " ", "scale"}], ")"}]}], " ", 
+    "*)"}],
+   FontColor->RGBColor[0, 0, 1]], "\[IndentingNewLine]", 
+  RowBox[{"Show", "[", 
+   RowBox[{
+    RowBox[{"Plot", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[CapitalDelta]m2atm", "[", "t", "]"}], "*", 
+       RowBox[{"10", "^", "3"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "tmin", ",", "tmax"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ImageSize", "\[Rule]", "400"}], ",", 
+      RowBox[{"FrameLabel", "->", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(log\), \(10\)]\)(\[Mu]/GeV)\>\"", ",", 
+         "\"\<\!\(\*SubsuperscriptBox[\(\[CapitalDelta]m\), \(atm\), \(2\)]\) \
+[\!\(\*SuperscriptBox[\(10\), \
+\(-3\)]\)\[ThinSpace]\!\(\*SuperscriptBox[\(eV\), \(2\)]\)]\>\""}], "}"}]}], 
+      ",", 
+      RowBox[{"FrameTicks", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"RGELogTicksLabeled", "[", 
+          RowBox[{"2", ",", "19"}], "]"}], ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"i", "*", "0.2"}], ",", 
+             RowBox[{"PaddedForm", "[", 
+              RowBox[{
+               RowBox[{"i", "*", "0.2"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"2", ",", "1"}], "}"}]}], "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", 
+             RowBox[{"-", "50"}], ",", "50"}], "}"}]}], "]"}], ",", 
+         RowBox[{"RGELogTicks", "[", 
+          RowBox[{"2", ",", "19"}], "]"}], ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"i", "*", "0.2"}], ",", "\"\<\>\""}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "0", ",", "50"}], "}"}]}], "]"}]}], "}"}]}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"PlotRange", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"All", ",", "All"}], "}"}]}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", 
+       RowBox[{"{", "Blue", "}"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Prolog", "\[Rule]", 
+       RowBox[{"{", "ShadowEFT", "}"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{"DisplayFunction", "\[Rule]", "Identity"}]}], 
+     "\[IndentingNewLine]", "]"}], ",", 
+    RowBox[{"DisplayFunction", "\[Rule]", "$DisplayFunction"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.436085094391677*^9, 3.436085097838912*^9}}]
+}, Open  ]]
+},
+WindowSize->{950, 1023},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+PrintingPageRange->{Automatic, Automatic},
+PageHeaderLines->{Inherited, False},
+PrintingOptions->{"FirstPageFooter"->False,
+"FirstPageHeader"->False,
+"Magnification"->1,
+"PaperOrientation"->"Portrait",
+"PaperSize"->{612, 792},
+"PostScriptOutputFile":>"RGEPlots.nb.ps"},
+FrontEndVersion->"6.0 for Linux x86 (32-bit) (June 2, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[590, 23, 74, 0, 236, "Title"],
+Cell[667, 25, 257, 6, 135, "Text"],
+Cell[927, 33, 313, 9, 70, "Input"],
+Cell[1243, 44, 791, 21, 160, "Input"],
+Cell[2037, 67, 6250, 166, 1096, "Input"],
+Cell[8290, 235, 4336, 111, 550, "Input"],
+Cell[12629, 348, 4295, 110, 550, "Input"],
+Cell[16927, 460, 4792, 121, 610, "Input"],
+Cell[21722, 583, 4145, 106, 593, "Input"],
+Cell[25870, 691, 2502, 63, 417, "Input"],
+Cell[28375, 756, 2733, 69, 417, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

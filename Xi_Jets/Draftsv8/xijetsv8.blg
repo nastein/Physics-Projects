@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2019)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: xijetsv7.aux
+The style file: utphys.bst
+Database file #1: xijets.bib
+Warning--empty title in PDG
+Warning--empty pages in PDG
+Warning--empty author in ATLAS:2012soa
+Warning--empty pages in fastjet
+Warning--empty author in particleflow
+You've used 32 entries,
+            2360 wiz_defined-function locations,
+            819 strings with 10603 characters,
+and the built_in function-call counts, 10282 in all, are:
+= -- 1064
+> -- 323
+< -- 0
++ -- 120
+- -- 88
+* -- 1057
+:= -- 1137
+add.period$ -- 42
+call.type$ -- 32
+change.case$ -- 39
+chr.to.int$ -- 0
+cite$ -- 37
+duplicate$ -- 618
+empty$ -- 933
+format.name$ -- 88
+if$ -- 2642
+int.to.chr$ -- 0
+int.to.str$ -- 32
+missing$ -- 124
+newline$ -- 103
+num.names$ -- 30
+pop$ -- 142
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 478
+stack$ -- 0
+substring$ -- 391
+swap$ -- 362
+text.length$ -- 31
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 5
+while$ -- 64
+width$ -- 34
+write$ -- 265
+(There were 5 warnings)

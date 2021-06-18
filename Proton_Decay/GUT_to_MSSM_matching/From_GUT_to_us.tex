@@ -1,0 +1,97 @@
+\documentclass[aps,onecolumn,twoside,secnumarabic,balancelastpage,amsmath,amssymb,nofootinbib,hyperref=pdftex]{revtex4}
+
+
+\usepackage{color}         % produces boxes or entire pages with colored backgrounds
+\usepackage{graphics}      % standard graphics specifications
+\usepackage[pdftex]{graphicx}      % alternative graphics specifications
+\usepackage{longtable}     % helps with long table options
+\usepackage{amsmath}
+\usepackage{epsf}          % old package handles encapsulated post script issues
+\usepackage{bm}            % special 'bold-math' package
+\usepackage{verbatim}			% for comment environment
+\usepackage[colorlinks=true]{hyperref}  % this package should be added after all others % use as follows: \url{http://web.mit.edu/8.13}                                    
+                                  
+
+\begin{document}
+\title{}
+\author         {Noah Steinberg}
+\email          {nastein@umich.edu}
+\date{\today}
+\affiliation{University of Michigan - Physics}
+
+\maketitle
+
+\section{Outline}
+
+The steps to obtaining the proton decay rate from SUSY SU(5) are outlined below,
+
+\begin{enumerate}
+\item Write down the yukawa terms from the super potential for SUSY SU(5)
+\item Integrate out the triplet higgs to obtain dimension 5 MSSM operators (obeying $SU(3) \times SU(2)_{L} \times U(1)_{Y}$ invariance), match these at the GUT scale
+\item Using SUSY renormalization group equations, evolve the coefficients of the dimension 5 operators down to the SUSY scale. This is easier because you are renormalizing the superpotential, which only recieves contributions from the wave function renormalization of each of the fields due to the powerful non renormalization theorem. 
+\item Integrate out the SUSY fields to obtain dimension 6 SM operators (obeying $SU(3) \times SU(2)_{L} \times U(1)_{Y}$ invariance), match these at the SUSY scale
+\item Using renormalization group equations, evolve coefficients of the dimension 6 operators down to the electroweak scale.
+\item Now we should have a theory with only $SU(3) \times U(1)_{em}$ invariant terms, we match this to the theory above.
+\item Using rge equtions, evolve coefficients down to the proton scale, match to lattice qcd results
+\end{enumerate}
+
+\section{SUSY SU(5) Super potential}
+The Yukawa portion of the super potential is given by,
+\begin{equation}
+W_{\text{Yukawa}} = \frac{1}{4}(P\hat{h})^{ij}\epsilon_{abcde}\Psi^{ab}_{i}\Psi^{cd}_{j}H^{e} - \sqrt{2}(V^{*}\hat{f})^{ij}\Psi^{ab}_{i}\Phi_{ja}\bar{H}_{b}
+\end{equation}
+
+Here $\Psi$ and $\Phi$ are the matter fields which are in the 10 and $\bar{5}$ rep of SU(5) respectively. H and $\bar{H}$ are the 5 and $\bar{5}$ Higgs fields. These contain the electroweak higgs doublets as well as the colored higgs triplets which are responsible for the proton decay channel we are interested in. In our convention P is a unit determinant diagonal matrix of phases (i.e. $P_{ij} = e^{i\phi_{i}}\delta_{ij}$ with $\sum_{i} \phi_{i} = 0$), $\hat{h}$ is a diagonal matrix with real entries, $V$ is a unitary matrix with the phases removed from the first row and column, and f is a diagonal matrix with real entries. These matrices arise from different field redefintions of $\Psi$ and $\Phi$. 
+
+We we choose a basis where the yukawa couplings of the up-type quarks and charged leptons are diagonalized and we embed the MSSM fields into $\Psi$ and $\Phi$ as follows,
+
+\begin{equation}
+\Psi \ni [Q_i, e^{-i\phi_{i}}\bar{U}_{i}, V_{ij}\bar{E}_{j}]
+\end{equation}
+\begin{equation}
+\Phi \ni [\bar{D}_{i}, L_{i}]
+\end{equation}
+
+This gives us the following super potential in terms of MSSM fields (I will only include terms involving the colored higgs as these operators give dimension 5 proton decay),
+
+\begin{equation}
+W_{\text{Yukawa,Proton Decay}}-\frac{1}{2}\hat{h}^{i}e^{i\phi_{i}}\epsilon_{abc}(Q^{a}_{i}Q^{b}_{i})H^{c}_{C} + (V^{*}\hat{f})^{ij}(Q^{a}_{i}L_{j})\bar{H}_{Ca} + (\hat{h}V)^{ij}\bar{U}_{ia}\bar{E}_{j}H^{a}_{C} - (V^{*}\hat{f})^{ij}e^{-i\phi_{i}}\epsilon^{abc}\bar{U}_{ia}\bar{D}_{jb}\bar{H}_{Cc}
+\end{equation}
+
+\section{Integrating out $H_{C}$}
+By integrating out the colored higgs triplet we obtain a dimension 5 effective lagrangian
+
+\begin{equation}
+\mathcal{L}^{eff}_{5} = C^{ijkl}_{5L}\mathcal{O}^{5L}_{ijkl} + C^{ijkl}_{5R}\mathcal{O}^{5R}_{ijkl} + \text{h.c.}
+\end{equation}
+
+where the effective operators are given by
+
+\begin{equation}
+\mathcal{O}^{5L}_{ijkl} = \int d^{2}\theta \frac{1}{2}\epsilon_{abc}(Q^{a}_{i}Q^{b}_{j})(Q^{c}_{k}L_{l})
+\end{equation}
+\begin{equation}
+\mathcal{O}^{5R}_{ijkl} = \int d^{2}\theta \epsilon^{abc}\bar{U}_{ia}\bar{E}_{j}\bar{U}_{kb}\bar{D}_{lc}
+\end{equation}
+
+The coefficients of the above operators are matched at the GUT scale as
+
+\begin{equation}
+C^{ijkl}_{5L}(M_{GUT}) = \frac{1}{M_{H_{C}}}(P\hat{h})^{ij}(V^{*}\hat{f})^{kl} = \frac{1}{M_{H_{C}}}\hat{h}_{i}e^{i\phi_{i}}\delta^{ij}(V^{*}\hat{f})^{kl}
+\end{equation}
+\begin{equation}
+C^{ijkl}_{5R}(M_{GUT}) = \frac{1}{M_{H_{C}}}(\hat{h}V)^{ij}(P^{*}V^{*}\hat{f})^{kl} = \frac{1}{M_{H_{C}}}(\hat{h}V)^{ij}(V^{*}\hat{f})^{kl}e^{-i\phi_{k}}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

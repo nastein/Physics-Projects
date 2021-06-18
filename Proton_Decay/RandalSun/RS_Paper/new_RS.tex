@@ -1,0 +1,103 @@
+\documentclass[aps,onecolumn,twoside,secnumarabic,balancelastpage,amsmath,amssymb,nofootinbib,hyperref=pdftex]{revtex4}
+
+
+\usepackage{color}         % produces boxes or entire pages with colored backgrounds
+\usepackage{graphics}      % standard graphics specifications
+\usepackage[pdftex]{graphicx}      % alternative graphics specifications
+\usepackage{longtable}     % helps with long table options
+\usepackage[english]{babel}
+\setlength{\parskip}{1em}
+\usepackage{amsmath}
+\usepackage{lieart}
+\usepackage{epsf}          % old package handles encapsulated post script issues
+\usepackage{bm}            % special 'bold-math' package
+\usepackage{verbatim}			% for comment environment
+\usepackage[colorlinks=true]{hyperref}  % this package should be added after all others % use as follows: \url{http://web.mit.edu/8.13}                   
+\renewcommand{\thesection}{\Roman{section}}                                  
+
+\begin{document}
+\title{Randall Sundrum - Fermion masses and Proton Decay}
+\author         {Noah Steinberg, James D. Wells, Zhengkang Zhang}
+%\email          {nastein@umich.edu}
+%\date{\today}
+\affiliation{Leinweber Center for Theoretical Physics, University of Michigan, Ann Arbor}
+
+\begin{abstract}
+\small{}
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+The Randal Sundrum (RS) model of warped extra dimensions is a popular solution for solving the hierarchy problem\cite{RS}. In RS, the smallness of the weak scale ($v \approx 246$ GeV) and the Higgs mass is a result of the warped metric of the 5d spacetime, $ds^{2} = e^{-2ky}\eta_{\mu\nu}dx^{\mu}dx^{\nu} + dy^{2}$, where k is the AdS curvature and $y \in [0,\pi R]$ is the coordinate along the orbifolded circular extra dimension. After integrating out the extra dimension, physics on the visible (SM) brane located at $y = \pi R$ is described by a 4d effective field theory with a cut off that is exponentially suppressed by the RS warp factor:
+
+\begin{equation}
+\Lambda_{\text{vis}} = M_{\text{pl}}e^{-\pi \text{kR}}
+\end{equation}
+
+In this way, though the fundamental scale is $M_{\text{pl}} \approx 10^{18}$ GeV, the cutoff on the visible brane can be around the weak scale when the AdS curvature times the radius of the extra dimension, kR, is approximately 13, solving the hierarchy problem. 
+\vskip 0.12in
+Besides solving the hierarchy problem, the RS model is a proverbial playground for phenomenology. By allowing the fermions to live in the bulk of the extra dimension, the large hierarchy of fermion masses ($m_{\text{top}} \approx 172$ GeV $\gg m_{\text{up}} \approx 10^{-3}$ GeV) can be explained by localizing each of the fermions in different places along the extra dimension\cite{GP}. This localization is controlled by dimensionless $\mathcal{O}(1)$ mass parameters, $c_i$ (one for each field), of the 5d theory. Additionally, through the RS-GIM mechanism these mass parameters also naturally suppress some higher dimension operators which would otherwise cause large flavor changing neutral currents. 
+\vskip 0.12in
+But the above solution comes with its own set of problems. Contributions to precision electroweak observables from the exchange of the tower of virtual KK modes constrains the mass of the lightest KK mode ($M_{\text{kk}} \approx k e^{-\pi\text{kR}}$) to be heavy, sometimes as much as 10 TeV, introducing a little hierarchy problem. Additionally, to forbid rapid proton decay from dimension 6 operators requires localizing the light quarks very close to the UV brane ($y=0$), but this produces quark masses which are far too light. Finally, if neutrino masses are generated from the Weinberg operator, it is difficult to avoid too heavy neutrinos, which would violate bounds from cosmology.
+\vskip 0.12in
+Upon closer inspection, each of the aforementioned problems seems to stem from one place, that we demanded the RS model solve the hierarchy problem, i.e. that the cutoff of the EFT on the visible brane is $\Lambda_{\text{vis}} \approx M_{\text{weak}}$. The viewpoint of the authors are that this may be an unnecessary burden on the model. The hierarchy problem may be solved through other means: supersymmetry, gauge-higgs unification, or any other one of the myriad solutions available. It may also be that nature has fine tuned the weak scale, or that such worries of fine tuning are actually misplaced. Whatever the answer, we will not address such issues further. 
+\vskip 0.12in
+Upon letting go of this singular constraint, the question becomes what exactly should the cutoff on the visible brane be? The visible brane cutoff is exponentially dependent on the product kR, and so are the fermion masses. By changing the cutoff, the required mass parameter for each field changes as well. These mass parameters are not uniquely determined, but cluster around certain values. As such, the suppression scale for higher dimensional operators changes as well when we change the visible brane cutoff, one because we have changed the bare cutoff, and two because the extra suppression brought about by the RS-GIM mechanism changes as the mass parameters of the fermion fields change. Of all the higher dimensional operators, constraints from baryon number violating (BNV)  operators seem to be the strongest. Lower lifetime limits on proton decay from Super Kamiokande set the lower limit on the scale of BNV above $10^{16}$ GeV. One ad hoc way to get around this constraint is to suppose that our theory has a global $U(1)_{B}$ invariance. But if the RS model descends from some UV theory of quantum gravity, i.e. string theory, then the only unbroken symmetries are gauge symmetries. Thus, suppressing baryon number violation is the most difficult challenge to creating a realistic RS model and should motivate our choice of cutoff and therefore the combination kR.
+\vskip 0.12in
+Knowing this, we choose the following criteria to judge whether a certain cutoff, $\Lambda_{\text{vis}}$, is viable; (1) The observed fermion masses and mixing angles should be reproduced. Each choice of $\Lambda_{\text{vis}}$ (and therefore kR) defines a unique EFT at energies below $\mu = \Lambda_{\text{vis}}$. We run the known fermion masses and mixing angles, $\{m_{i}(\mu),\theta_{i}(\mu)\}$ defined in the $\overline{{\text{MS}}}$ scheme, from $\mu = M_{Z}$ to $\mu = \Lambda_{\text{vis}}$ for each choice of the cutoff and fit the $\mathcal{O}(1)$ mass parameters of each field to produce the masses and mixings $\{m_{i}(\Lambda_{\text{vis}}),\theta_{i}(\Lambda_{\text{vis}})\}$. (2) Proton decay, which depends strongly on the value of the above mentioned mass parameters, should be sufficiently suppressed. Most interestingly we find that smallest cutoff, $\Lambda_{\text{vis}}$, is near the seesaw scale.
+
+\section{Fermion in Randall Sundrum}
+
+The action for a 5d Dirac fermion in the RS model is given by: 
+
+\begin{equation}
+S_{5} = -\int d^{4}x\int dy \sqrt{-g} (i\bar{\Psi}\gamma^{M}D_{M}\Psi + im_{\Psi}\bar{\Psi}\Psi).
+\end{equation}
+
+In the above action $g\equiv det(g) = e^{-4ky}$, $D_{M}$ is the spinor covariant derivative, and $\gamma^{M}$ are the curved space gamma matrices satisfying $\{\gamma^{M},\gamma^{N}\} = 2g^{MN}$. The 5d Dirac mass $m_{\Psi}$ is parameterized as $m_{\Psi} = ck\epsilon(y)$ where c is a dimensionless mass parameter described in the introduction, k is the AdS curvature, and $\epsilon(y)$ takes the values +1 for $y > 0$ and -1 for $y < 0$. This ensures that the 5d mass term is even under the orbifold symmetry. 
+\vskip 0.12in
+Variation of the above action leads to the 5d equation of motion for the fermion,
+
+\begin{equation}
+(g^{MN}\gamma_{M}D_{N} + m_{\Psi})\Psi = 0.
+\end{equation}
+
+Inserting the KK decomposition for the Dirac fermion gives equations for the profile functions $f^{(n)}(y)$ of each KK level, where Neumman or Dirichilet boundary conditions are applied to each of the weyl components of the Dirac fermion to eliminate the zero mode of either the left or right handed component, defined by $\gamma^{5}\psi_{L/R} = \pm\psi_{L/R}$. This strategy gives us chiral zero modes in the 4d effective theory. The zero mode profile is simply an exponential $f^{(0)} \approx e^{(2-c)ky}$, so that depending on the value of c, the fermion is localized closer to the UV or SM brane. Note that the Dirac mass term does not violate gauge invariance, as is usual in the SM. This is because we assign to each SM weyl fermion (e.g. $q_{L}, b_{R}, \tau_{R})$ its own 5d Dirac fermion, so each mass term is separately gauge invariant.
+\vskip 0.12in
+In RS, 4d masses for the zero mode SM fermions are generated by the following yukawa coupling:
+
+\begin{equation}
+\int d^{4}x\int dy\sqrt{-g} \lambda^{(5)}_{ij}H(x)(\bar{\Psi}_{iL}(x,y)\Psi_{jR}(x,y) + \text{h.c.})\delta(y - \pi R)
+\end{equation}
+
+where $\Psi_{iL}$, and $\Psi_{iR}$ are 5d Dirac fermions of the ith generation with different boundary conditions for their components so that after KK decomposition the left handed weyl component of $\Psi_{L}$ has a zero mode, and similarly with the right handed weyl component of $\Psi_{R}$. After integrating over the 5th dimension, an effective 4d yukawa coupling for the zero modes is generated.
+
+\begin{equation}
+\int d^{4}x\lambda_{ij}H(x)(\bar{\Psi}^{(0)}_{iL}(x,y)\Psi^{(0)}_{jR}(x,y) + \text{h.c.}).
+\end{equation}
+
+where $\lambda_{ij}$ is the effective four dimensional yukawa coupling which depends on the mass parameters of each fermion as
+
+\begin{equation}
+\lambda_{ij} = \frac{\lambda^{(5)}_{ij}k}{N_{iL}N_{jR}}e^{(1 - c_{iL} - c_{jR}\pi kR)}; \frac{1}{N^{2}_{iL/R}} = \frac{1/2 - c_{iL/R}}{e^{(1-2c_{iL/R})} - 1}
+\end{equation}
+
+For $c_{iL}$ and $c_{iR} > 1/2$ the yukawa couplings are small and the left handed and right handed zero modes are localized close to the UV brane, whereas the opposite is true for $c_{iL}$ and $c_{iR} < 1/2$. This was the original motivation for placing fermions in the bulk. 
+
+
+
+\begin{thebibliography}{9} 
+\bibitem {RS} L. Randall and R. Sundrum, Phys. Rev. Lett. 83 (1999) 3370.
+\bibitem {GP} T. Gherghetta and A. Pomarol, Nucl.Phys. B586 (2000) 141 [hep- ph/0003129].
+\end{thebibliography}
+
+
+
+
+
+
+
+
+
+\end{document}

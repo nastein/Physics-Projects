@@ -1,0 +1,110 @@
+\documentclass[a4paper,11pt]{article}
+\pdfoutput=1
+\usepackage{jheppub}
+
+\usepackage{textcase}
+\usepackage{graphicx,epsfig,psfrag,amssymb,hyperref}
+\usepackage{multirow}
+\usepackage{color,graphicx,epsfig,psfrag,amsmath,empheq}
+\usepackage{bm}
+\usepackage{mathrsfs,amsfonts,soul,color}
+\usepackage[caption=false]{subfig}
+\usepackage{hepunits}
+\usepackage{hologo}
+
+\usepackage{placeins}
+
+\def\aprime{\ensuremath{A^{\prime}}\xspace}
+\def\git {\href{https://gitlab.com/philten/darkcast}{\tt https://gitlab.com/philten/darkcast}}
+
+\begin{document}
+
+\title{The Dark Sectors Library}
+
+\author{Philip Ilten,$^a$}
+\author{Yotam Soreq,$^b$}
+\author{Mike Williams,$^c$}
+\author{and Wei Xue$^d$}
+
+\affiliation{\phantom{ }\hspace{-0.12in}$^a$School of Physics and Astronomy, University of Birmingham, Birmingham, B152 2TT, UK\\
+\phantom{ }\hspace{-0.16in}$^b$Center for Theoretical Physics, Massachusetts Institute of Technology, \!Cambridge, \!MA 02139, \!USA \\
+\phantom{ }\hspace{-0.16in}$^c$Laboratory for Nuclear Science, Massachusetts Institute of Technology, \!Cambridge, \!MA 02139, \!USA \\
+\phantom{ }\hspace{-0.16in}$^d$Theoretical Physics Department, CERN, CH-1211 Geneva 23, Switzerland
+}
+
+\emailAdd{philten@cern.ch}
+\emailAdd{soreqy@mit.edu}
+\emailAdd{mwill@mit.edu}
+\emailAdd{wei.xue@cern.ch}
+
+\abstract{
+This is meant to be a {\em living} document whose purpose is to make it easier to find and/or appropriately cite the growing vast literature on dark-sector physics.
+Below, we provide citation blocks for various categories of work.
+Anybody is free to download the \LaTeX\ file used to produce this PDF file---and the corresponding \hologo{BibTeX} file---both of which are provided on \git.
+We know that this document does not yet live up to its lofty title.
+Please send suggested updates via email to one of the authors listed above, or preferred, edit these files yourself and submit a merge request to our \git\ page!
+}
+
+\maketitle
+
+
+\noindent Below is the list of references, roughly categorized as follows (admittedly, this categorization is not perfect; help us improve it by committing a merge request):
+\begin{list}{--}{\leftmargin=1em}
+  \item foundational \aprime theory work~~\cite{Okun:1982xi,Galison:1983pa,Holdom:1985ag,Pospelov:2007mp,ArkaniHamed:2008qn,Bjorken:2009mm};
+  \item community reports~~\cite{Essig:2013lka,Alexander:2016aln,Battaglieri:2017aum};
+  \item constraints on visible \aprime decays from beam-dump experiments~\cite{Bergsma:1985is,Konaka:1986cb,Riordan:1987aw,Bjorken:1988as,Bross:1989mp,Davier:1989wz,Athanassopoulos:1997er,Astier:2001ck,Bjorken:2009mm,Essig:2010gu,Williams:2011qb,Blumlein:2011mv,Gninenko:2012eq,Blumlein:2013cua,Andreas:2012mt,Blumlein:1990ay,Blumlein:1991xh,Bergsma:1985qz,Bernardi:1985ny,Gninenko:2011uv};
+  \begin{itemize}
+    \item limits from E141~\cite{Riordan:1987aw}, E137~\cite{Bjorken:1988as}, E774~\cite{Bross:1989mp}, KEK~\cite{Konaka:1986cb}, Orsay~\cite{Davier:1989wz} set in Refs.~\cite{Bjorken:2009mm,Andreas:2012mt};
+    \item limits from $\nu$-CAL~I~\cite{Blumlein:1990ay,Blumlein:1991xh} set in Refs.~\cite{Blumlein:2011mv,Blumlein:2013cua};
+    \item limits from CHARM~\cite{Bergsma:1985qz} set in Ref.~\cite{Gninenko:2012eq};
+    \item limits from NOMAD~\cite{Astier:2001ck} and PS191~\cite{Bernardi:1985ny} set in Ref.~\cite{Gninenko:2011uv};
+  \end{itemize}
+  \item constraints on visible \aprime decays from fixed-target experiments~\cite{Abrahamyan:2011gv,Merkel:2014avp,Merkel:2011ze};
+  \begin{itemize}
+    \item A1~\cite{Merkel:2014avp} and APEX~\cite{Abrahamyan:2011gv};
+  \end{itemize}
+  \item constraints on visible \aprime decays from collider experiments~\cite{Aubert:2009cp,Curtin:2013fra,Lees:2014xha,Ablikim:2017aab,Aaij:2017rft,Archilli:2011zc,KLOE:2016lwm};
+  \begin{itemize}
+    \item BaBar~\cite{Lees:2014xha};
+    \item KLOE~\cite{Archilli:2011zc,KLOE:2016lwm};
+    \item LHCb~\cite{Aaij:2017rft};
+  \end{itemize}
+  \item constraints on visible \aprime decays rare-meson-decay experiments~\cite{Bernardi:1985ny,MeijerDrees:1992kd,Archilli:2011zc,Gninenko:2011uv,Babusci:2012cr,Adlarson:2013eza,Agakishiev:2013fwl,Adare:2014mgk,Batley:2015lha,KLOE:2016lwm};
+  \begin{itemize}
+    \item NA48/2~\cite{Batley:2015lha};
+  \end{itemize}
+  \item constraints on invisible \aprime decays~\cite{Essig:2013vha,Davoudiasl:2014kua,Banerjee:2016tad,Lees:2017lec,Adler:2001xv,Adler:2004hp,Artamonov:2009sz,Banerjee:2017hhz};
+    \begin{itemize}
+      \item from NA64~\cite{Banerjee:2017hhz};
+      \item from BaBar~\cite{Lees:2017lec}.
+    \end{itemize}
+  \item proposed searches for dark photons~\cite{Essig:2010xa,Freytsis:2009bh,Balewski:2013oza,Wojtsekhowski:2012zq,Beranek:2013yqa,Raggi:2014zpa,Echenard:2014lma,Battaglieri:2014hga,Alekhin:2015byh,Gardner:2015wea,Ilten:2015hya,Curtin:2014cca,He:2017ord,Kozaczuk:2017per,Ilten:2016tkc,Feng:2017uoz,Alexander:2017rfd};
+  \item \aprime--$Z$ mixing~\cite{Barello:2015bhq,Cassel:2009pu,Cline:2014dwa};
+  \item enhancement of longitudinal modes for anomalous currents ({\em e.g.}\ baryon number)~\cite{Dror:2017nsg,Dror:2017ehi,Ismail:2017fgq}, and constraints that arise from the requirement of anomaly cancellation~\cite{Dobrescu:2014fca};
+  \item constraints on $B-L$~\cite{Bellini:2011rx,Harnik:2012ni,Carlson:1986cu,Frugiuele:2016rii,Ilten:2018dly}:
+  \begin{itemize}
+    \item from \aprime searches set in Ref.~\cite{Ilten:2018dly} and elsewhere;
+      \item from Borexino~\cite{Bellini:2011rx} set in Ref.~\cite{Harnik:2012ni};
+      \item from SPEAR, DORIS, and PETRA~\cite{Carlson:1986cu} set in Ref.~\cite{Frugiuele:2016rii}.
+  \end{itemize}
+  \item constraints on and proposed searches for the $B$ (baryon number) boson~\cite{Albrecht:1986ec,Aranda:1998fr,Prakhov:2008zz,Tulin:2014tya,Dror:2017ehi,Dror:2017nsg,Grygier:2017tzo,Aaij:2015tna,Aaij:2016qsm,AlaviHarati:2003mr,Artamonov:2008qb,Acciarri:1997im,Abreu:1996pa,Ilten:2018dly,Fanelli:2016utb,Dobrescu:2014fca}:
+  \begin{itemize}
+    \item from $\Upsilon$ decays~\cite{Albrecht:1986ec} set in Ref.~\cite{Aranda:1998fr};
+    \item from $\eta$ decays~\cite{Prakhov:2008zz} set in Ref.~\cite{Tulin:2014tya};
+    \item from longitudinal-mode enhancements~\cite{Dror:2017ehi,Dror:2017nsg} in $B_{u,d}\to KX$~\cite{Grygier:2017tzo,Aaij:2015tna,Aaij:2016qsm}, $K\to\pi X$~\cite{AlaviHarati:2003mr,Artamonov:2008qb}, and $Z\to X\gamma$~\cite{Acciarri:1997im,Abreu:1996pa} processes (the constraints from Refs.~\cite{Aaij:2015tna,Aaij:2016qsm} were set in Ref.~\cite{Ilten:2018dly});
+    \item inferred due to the lack of observed new anomaly-canceling fermions~\cite{Dobrescu:2014fca};
+    \item from \aprime searches set in Ref.~\cite{Ilten:2018dly} and elsewhere;
+    \item and proposed searches~\cite{Fanelli:2016utb}.
+  \end{itemize}
+  \item protophobic forces~\cite{Feng:2016ysn};
+  \item constraints on \aprime from $(g-2)_e$~\cite{Pospelov:2008zw,Endo:2012hp};
+  \item searches for $B_{u,d} \to K^{(*)}X$ with $X\to\mu^+\mu^-$~\cite{Aaij:2015tna,Aaij:2016qsm};
+  \item and some non-vector proposals~\cite{Kahn:2016vjr,Haisch:2016hzu}.
+\end{list}
+{\em N.b.}, anybody who submits an accepted merge request can add themselves as an author to this document if they choose to do so. 
+
+\bibliographystyle{JHEP}
+\bibliography{darkrefs.bib}
+
+
+\end{document}

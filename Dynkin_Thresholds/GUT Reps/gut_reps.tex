@@ -1,0 +1,111 @@
+\documentclass[aps,onecolumn,twoside,secnumarabic,balancelastpage,amsmath,amssymb,nofootinbib,hyperref=pdftex]{revtex4}
+
+
+\usepackage{color}         % produces boxes or entire pages with colored backgrounds
+\usepackage{multirow}
+\usepackage{graphics}      % standard graphics specifications
+\usepackage[pdftex]{graphicx}      % alternative graphics specifications
+\usepackage{longtable}     % helps with long table options
+\usepackage[english]{babel}
+\setlength{\parskip}{1em}
+\usepackage{amsmath}
+\usepackage{epsf}          % old package handles encapsulated post script issues
+\usepackage{bm}            % special 'bold-math' package
+\usepackage{verbatim}			% for comment environment
+\usepackage[colorlinks=true]{hyperref}  % this package should be added after all others % use as follows: \url{http://web.mit.edu/8.13}                                    
+                                  
+
+\begin{document}
+\title{}
+\author         {Noah Steinberg}
+\email          {nastein@umich.edu}
+\date{\today}
+\affiliation{University of Michigan - Physics}
+
+\maketitle
+\section{SU(5)}
+SU(5) is the smallest simple lie group that can accommodate the SM as a subgroup. In minimal SU(5), we have three copies of $\bar{\textbf{5}}_{F} = (d^{c}_{i}, \epsilon_{ij}L^{j})^{T}$ and $\textbf{10}_{F} = \bigl( \begin{smallmatrix}\epsilon^{ijk}u^{c}_{k} & q\\ -q^{T} & \epsilon^{ij}e^{c}\end{smallmatrix}\bigr)$, one for each generation fermion. To break the SU(5) symmetry down to $G_{\text{SM}}$ we use a Higgs scalar which lives in the \textbf{24} (the adjoint) of SU(5). This $\textbf{24}_{H}$ gets a vev $\Sigma = \frac{v}{\sqrt{30}}\text{diag(2,2,2,-3,-3)}$ which results in 12 massless goldstones that will be eaten by the X and Y gauge bosons to give them super heavy masses. Finally we have another Higgs living in the $\bar{\textbf{5}}_{H}$ which contains the standard model Higgs that gives rise to electroweak symmetry breaking, and a colored triplet Higgs. In SUSY SU(5) we need both a $\textbf{5}_{H}$ and $\bar{\textbf{5}}_{H}$ to give masses to the up and the down quarks separately. 
+Minimal SU(5) is disfavored because of the absence of massive neutrinos, the prediction of down quark and lepton yukawa unification, and the non observation of proton decay so far. Realistic models contain additional fields and or non renormalization interactions. Another Higgs, $\textbf{15}_{H}$, can be added to improve unification and lengthen the proton lifetime. A $\textbf{45}_{H}$ can be added to fix the relationship between the fermion yukawa couplings, and a fermionic $\textbf{24}_{F}$ can be added to provide a candidate right handed neutrino and fermion triplet to implement the seesaw mechanism. 
+
+Below we list a table with the particle content of SU(5) as well as the decomposition of the different representations into direct sums of irreps of $G_{\text{SM}}$. Note the irreps with the asterisks are not included in the minimal SU(5) model. 
+
+\begin{center}
+\begin{tabular}{||c|c||}
+\hline
+SU(5) Irrep $\rightarrow G_{\text{SM}}$ Reps & SU(5) Dynkin Index \\
+\hline\hline
+$\bar{5}_{F} \rightarrow (\bar{3},1,1/3)\bigoplus (1,2,-1/2)$ & 1 \\ &&&\\
+\hline
+$10_{F} \rightarrow (3,2,1/6)\bigoplus (\bar{3},1,-2/3)\bigoplus (1,1,1)$ & 3 \\ &&&\\
+\hline
+$\bar{5}_{H} \rightarrow (\bar{3},1,1/3)\bigoplus (1,2,-1/2)$ & 1 \\ &&&\\
+\hline
+$24_{H} \rightarrow (8,1,0)\bigoplus (1,1,0)\bigoplus (3,2,-5/6)\bigoplus (\bar{3},2,5/6)\bigoplus (1,3,0)$ & 10 \\ &&&\\
+\hline
+$24_{V}  \rightarrow (8,1,0)\bigoplus (1,1,0)\bigoplus (3,2,-5/6)\bigoplus (\bar{3},2,5/6)\bigoplus (1,3,0)$ & 10 \\ &&&\\
+\hline
+$^{*}45_{H} \rightarrow (1,2,-3)\bigoplus (3,1,2)\bigoplus (\bar{3},1,-8)\bigoplus (\bar{3},2,7) \bigoplus (3,3,2) \bigoplus (\bar{6},1,2)\bigoplus (8,2,-3)$ & 24 \\ &&&\\
+\hline
+$^{*}15_{H} \rightarrow (1,3,-6)\bigoplus (3,2,-1)\bigoplus (6,1,4)$ & 7 \\ &&&\\
+\hline
+$^{*}24_{F}  \rightarrow (8,1,0)\bigoplus (1,1,0)\bigoplus (3,2,-5/6)\bigoplus (\bar{3},2,5/6)\bigoplus (1,3,0)$ & 10 \\ &&&\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{SO(10)}
+SO(10) is the next candidate lie group for grand unification because all standard model fermions of a single generation plus a standard model singlet (i.e. right handed neutrino) can be accommodated in one irreducible representation of SO(10), the \textbf{16} dimensional spinor representation. In minimal SO(10), Higgs representations include the \textbf{10}, \textbf{120}, and \textbf{126} of SO(10). The adjoint of SO(10), the \textbf{45}, contains the 12 SM gauge bosons, as well as 33 additional X and Y bosons which gain superheavy masses upon spontaneous symmetry breaking of SO(10).
+\vskip 0.2in
+ Patterns of symmetry breaking from SO(10) down to $G_{\text{SM}}$ are not unique, i.e. there are multiple symmetry breaking patterns each with their own predictions for the super heavy gauge boson masses, the intermediate symmetry breaking scale, proton decay rates, and fermion masses. The most common intermediate breakings are $\text{SO(10)} \rightarrow SU(5)\times U(1)$, and $\text{SO(10)} \rightarrow SU(4)\times SU(2)_{L}\times SU(2)_{R} (\text{Patti Salam Model})$.
+Below we list a table with the particle content of SO(10) as well as the decomposition of the different representations into direct sums of irreps of $SU(5)\times U(1)$ and $SU(4)\times SU(2)_{L}\times SU(2)_{R}$. Note the irreps with the asterisks are not included in the minimal SO(10) model. 
+
+\begin{center}
+\begin{tabular}{||c|c||}
+\hline
+\multirow{2}{*}$\text{SO(10) Irrep} \rightarrow SU(5)\times U(1)$ Reps & SO(10) Dynkin Index\\
+$\rightarrow SU(4)\times SU(2)_{L}\times SU(2)_{R}$ reps\\ &&&\\
+\hline\hline
+\multirow{2}{*}$16_{F}\rightarrow (1,-5)\bigoplus (\bar{5},3)\bigoplus (10,-1)$&{4}\\
+$\rightarrow (4,2,1)\bigoplus (\bar{4},1,2)$ \\ &&&\\
+\hline
+\multirow{2}{*}$10_{H}\rightarrow (5,2)\bigoplus (\bar{5},-2)$&{10}\\
+$\rightarrow (1,2,2)\bigoplus (6,1,1)$ \\ &&&\\
+\hline
+\multirow{2}{*}$120_{H}\rightarrow (5,2)\bigoplus (\bar{5},-2)\bigoplus (10,-5)\bigoplus (\bar{10},5)\bigoplus (45,2) \bigoplus (\bar{45},2)$&{56}\\
+$\rightarrow (1,2,2)\bigoplus (6,1,3)\bigoplus (6,1,3)\bigoplus (10,1,1)\bigoplus(\bar{10},1,1)\bigoplus (15,2,2)$ \\ &&&\\
+\hline
+\multirow{2}{*}$126_{H}\rightarrow (1,10)\bigoplus (5,2)\bigoplus (\bar{10},6)\bigoplus(15,-6)\bigoplus (\bar{45},-2)\bigoplus (50,2)$&{70}\\
+$\rightarrow (6,1,1)\bigoplus (\bar{10},3,1)\bigoplus (10,1,3)\bigoplus (15,2,2)$ \\ &&&\\
+\hlines
+
+\multirow{2}{*}$^{*}54_{H}\rightarrow (15,4)\bigoplus (\bar{15},-4)\bigoplus (24,0)$&{24}\\
+$\rightarrow (1,1,1)\bigoplus (1,3,3)\bigoplus (6,2,2)\bigoplus (20',1,1)$ \\ &&&\\
+\hline
+\multirow{2}{*}$^{*}45_{H}\rightarrow (1,0)\bigoplus (10,4)\bigoplus (\bar{10},-4)\bigoplus (24,0)$&{16}\\
+$\rightarrow (1,3,1)\bigoplus (1,1,3)\bigoplus (6,2,2)\bigoplus (15,1,1)$ \\ &&&\\
+\hline
+\multirow{2}{*}$^{*}210_{H}\rightarrow (1,0)\bigoplus (5,-8)\bigoplus (\bar{5},-8)\bigoplus (10,4)\bigoplus (\bar{10},-4)\bigoplus (40,4)\bigoplus (\bar{40},-4)\bigoplus(75,0) $&{16}\\
+$\rightarrow (1,1,1)\bigoplus (6,2,2)\bigoplus (10,2,2)\bigoplus (\bar{10},2,2)\bigoplus (15,1,1)\bigoplus (15,3,1)\bigoplus (15,1,3)$ \\ &&&\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Conservation of Dynkin indices}
+
+When an irrep, R, of a GUT group $G$ breaks into a sum of product of representations $\Sigma_{i} R_{i}$, where each $R_{i} = (R_{a},R_{b}, . . )_{i}$ is a direct product of irreps of the groups which G has broken down into, there is a notion of "conservation of dynkin index". For example consider the $\textbf{10}$ of SU(5) breaking to $(3,2,1/6)\bigoplus (\bar{3},1,-2/3)\bigoplus (1,1,1)$ of $SU(3)\times SU(2)_{L}\times U(1)_{Y}$. Each rep $(R_{\text{SU(3)}}, R_{\text{SU(2)}}, R_{U(1)_{\text{Y}}})_{i}$ is of dimension $D(R_{\text{SU(3)}})\times D(R_{SU(2)_{\text{L}}})$. If we sum the Dynkin index of each $R_{\text{SU(3)}}_{i}$, weighted by the dimension of $R_{SU(2)_{\text{L}}}_{i}$, so in other words take the sum: $\Sigma_{i} I(R_{\text{SU(3)}}_{i})D(R_{SU(2)_{\text{L}}}_{i})$ we find that this equals 3, the Index of the $\textbf{10}$ of SU(5). Similarly, if we instead sum the index of each $SU(2)_{L}$ rep in the decomposition weighted by the respective dimensions of the SU(3) rep ($\Sigma_{i} I(R_{\text{SU(2)}}_{i})D(R_{SU(3)}}_{i})$ we also get 3. 
+
+In general we have $
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,89 @@
+
+(* ************************** *)
+(* *****  Information   ***** *)
+(* ************************** *)
+M$ModelName = "ALP_linear";
+
+M$Information = {
+  Authors      -> {"I. Brivio, M.B. Gavela, L. Merlo, K. Mimasu, J.M. No, R. del Rey, V. Sanz"},
+  Version      -> "1",
+  Date         -> "19. 01. 2017",
+  Emails -> {"ilaria.brivio@nbi.ku.dk"},
+  References -> "arXiv:1701.05379",
+  URLs -> "https://feynrules.irmp.ucl.ac.be/wiki/ALPsEFT"
+};
+
+FeynmanGauge = False;
+
+
+(* ************************** *)
+(* *****    Indices     ***** *)
+(* ************************** *)
+
+IndexRange[Index[SU2W      ]] = Unfold[Range[3]];
+IndexRange[Index[SU2D      ]] = Unfold[Range[2]];
+IndexRange[Index[Gluon     ]] = NoUnfold[Range[8]];
+IndexRange[Index[Colour    ]] = NoUnfold[Range[3]];
+IndexRange[Index[Generation]] = Range[3];
+
+IndexStyle[SU2W,       j];
+IndexStyle[SU2D,       k];
+IndexStyle[Gluon,      a];
+IndexStyle[Colour,     m];
+IndexStyle[Generation, f];
+
+
+
+(* ************************** *)
+(* **** Particle classes **** *)
+(* ************************** *)
+M$ClassesDescription = {
+
+(* ALP *)
+
+    S[4] == {
+    ClassName-> ALP,
+    SelfConjugate    -> True,
+    Mass             -> {Ma, 25.0},  (* default ALP mass: 1 MeV *)
+    Width            -> {Wax, Internal},
+    PropagatorLabel  -> "ax",
+    PropagatorType   -> D,
+    PropagatorArrow  -> None,
+    ParticleName     -> "ax",
+    FullName         -> "ALP"
+  }
+
+  };
+
+(* ********************************* *)
+(* *****   import parameters   ***** *)
+(* ********************************* *)
+
+Get["alp_linear_pars.fr"];
+
+(* ********************************** *)
+(* *****   Useful definitions   ***** *)
+(* ********************************** *)
+
+Wmatrix[mu_]:= Wi[mu,1] PauliSigma[1]/2 + Wi[mu,2] PauliSigma[2]/2 + Wi[mu,3] PauliSigma[3]/2;
+Wmunumatrix[mu_,nu_]:=  del[Wmatrix[nu],mu]- del[Wmatrix[mu],nu] + I ee/sw (Wmatrix[mu].Wmatrix[nu] - Wmatrix[nu].Wmatrix[mu]);
+
+Bmunu[mu_,nu_]:= (del[B[nu], mu] - del[B[mu], nu]);
+Btilde[mu_,nu_]:= Eps[mu,nu,ro,sig]/2 (del[B[sig], ro] - del[B[ro], sig]);
+Wtildematrix[mu_,nu_]:= Eps[mu,nu,ro,sig]/2 Wmunumatrix[ro,sig];
+
+sigmaT[mu_,nu_]:= I/2 (Ga[mu].Ga[nu]-Ga[nu].Ga[mu]);
+sigmaT[mu_,nu_,sp1_,sp2_]:= I/2 Module[{sp3}, Ga[mu,sp1,sp3].Ga[nu,sp3,sp2]-Ga[nu,sp1,sp3].Ga[mu,sp3,sp2]];
+
+Eps2 = I PauliSigma[2];
+
+(* ************************** *)
+(* *****   Lagrangian   ***** *)
+(* ************************** *)
+
+LAlp0 := Block[{mu}, 1/2 del[ALP,mu].del[ALP,mu] - Ma^2/2 ALP^2];
+
+Get["alp_linear_operators.fr"];
+
+LALP := LAlp0 + LAlp1;
+

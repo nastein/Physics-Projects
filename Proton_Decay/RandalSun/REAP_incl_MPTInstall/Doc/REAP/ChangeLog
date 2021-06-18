@@ -1,0 +1,92 @@
+* Version 1.9.3 2014-09-24:
+	- Fixed bug of REAP in Mathematica 10: Packages have to be implicitly loaded within "`Private`".
+	- Installation script for MacOS updated.
+
+* Version 1.9.2 2014-07-30:
+        - Rewrote RGERotateM to calculate eigenvectors correctly for complex mass matrices
+        - Fixed bug in RGEGetRightHanded\[Nu]Masses (problem with Mathematica context)
+
+* Version 1.9.1 2013-02-09:
+        - RG equations of type II in MSSM corrected
+	- transition functions from MSSM to 2HDM updated to properly take into account D-term contributions instead of allowing them to be set by hand.
+        - Modifications such that the new version of REAP does not result in error messages with older versions of Mathematica (FilterOptions)
+	- The new version has been tested with Mathematica 8 and 9.
+
+* Version 1.9 2013-02-04:
+        - Modifications such that REAP works with Mathematica 9: FilterOptions -> FilterRules
+
+* Version 1.8.4 2010-07-15:
+	- If RGESearchTransition is not set, no RH neutrinos are integrated out
+	- Installation script adapted to new MacOS behavior
+	- bug in RGESetModelOptions fixed
+	- "sort of reasonable" initial conditions at MZ added for models MSSM, MSSM0N, MSSMDirac, SM, 2HDM
+
+* Version 1.8.3 2010-05-06:
+	- Log[Abs[Eigenvalues]] replaced by Map[Log[Abs[#]]&,Eigenvalues]
+	in RGETestMY\[Nu]
+	- Abs[Eigenvalues[]] replaced by SingularValueList[] in CKMParameters, DiracMNSParameters
+	
+* Version 1.8.2 2009-11-05:
+	- Module replaced by Block to improve memory consumption
+
+* Version 1.8.1 2009-04-23:
+        - minimal conformal LR Doublet model included 
+
+* Version 1.8 2009-01-12:
+        - Bugfix in order to use the package within Mathematica 7
+
+* Version 1.7.4 2008-11-30:
+        - Bugfixes in installation script
+
+* Version 1.7.3 2008-02-18:
+        - Bugfixes to reduce memory consumption
+	- For loops --> Do loops
+
+* Version 1.7.2 2007-11-19:
+        - Modifications such that REAP works with Mathematica6
+	
+* Version 1.7.1 2007-06-18:
+	- Error in SU(2) gauge couplings in the Models RGEMSSMTriplet and RGEMSSMTriplet0N has been corrected.
+
+* Version 1.7 2007-03-07:
+	- New Models added: RGESMTriplet and RGESMTriplet0N, which add a Higgs triplet to the SM. Also RGEMSSMTriplet and RGEMSSMTriplet0N, which add 2 Higgs triplets to the MSSM.
+
+* Version 1.6 2006-06-30:
+	- New Options can be added to all existing models, not only to 2HDM*
+	
+* Version 1.5.2 2006-03-27:
+	- Bug removed which was introduced in Version 1.5.1: Some functions have been inserted in the model files twice leading
+	to errors. Thanks to Thomas Dent who discovered the bug.
+	
+* Version 1.5.1 2006-02-27:
+	- Some bugs in the documentation removed.
+	
+* Version 1.5 2005-10-18:
+	- Typo in "RGEHowTo.nb" and "First Steps" section of the manual:
+	  The Majorana phases are set by RGE\[CurlyPhi]i rather than RGE\[Phi]i
+	- New output function RGEPoleMTop which returns the pole mass of the top quark
+
+* Version 1.4 2005-07-22:
+	- RGERotateM: The basis of the output was changed from the requirement that M is diagonal to M is real and diagonal. This solves a bug in the output function RGE\[Epsilon]1.
+	- RGETemplate.nb: Bug in function \epsilon fixed.
+
+* Version 1.3 2005-03-24:
+	- RGERotateM: Normalization of eigenvectors corrected
+
+* Version 1.2 2005-02-14:
+	- RGE\[Epsilon]1, RGE\[Epsilon]1Max and RGEM1Tilde: bug fixed,
+	convention of Higgs vev and 10^9 from GeV <--> eV 
+
+* Version 1.1 2005-02-07:
+	- RGE\[Epsilon] renamed to RGE\[Epsilon]1.
+	- RGE\[Epsilon]Max renamed to RGE\[Epsilon]1Max.
+	- The old names still work, but they are deprecated and may be
+	removed in the future.
+	- Bug fixed in output functions RGEM1Tilde, RGE\[Epsilon]1,
+	RGE\[Epsilon]1Max.
+	- RGERotateM changed: Chop inserted to remove small imaginary
+	parts of the masses.
+	- RGEGetSolution: Bug in optional parameter "direction" fixed.
+	- RGELogTicksLabeledNegExp: Bug fixed.
+	- RGETemplate.nb: leptogenesis section added.
+	- FAQ: entry about leptogenesis added.

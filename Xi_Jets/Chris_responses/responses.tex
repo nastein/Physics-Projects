@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+
+\begin{document}
+C: What exotic $Z\to \phi_i\gamma$  searches are providing the constraints for lower $\Lambda$ values (the PDG is cited rather than the individual searches)? I guess $Z\to3\gamma$ or $Z\to2\gamma$ might be providing the best constraints. If so, it might be better to cite the individual searches. If it's not these, I'd be very interested in seeing what's providing the most constraint!
+\vskip 0.12in
+\textcolor{blue}{Authors: That's a better idea, we've included citations of CDF for the $Z\to\gamma\gamma$ decays and ATLAS for the $Z\to\gamma\gamma\gamma$ decays.}
+
+\vskip 0.12in
+
+C: In a similar vein, there are a few limits quoted in Section 1 related to the various processes of $h\to4\gamma,3\gamma,2\gamma$. What constraints do these limits (+ others as mentioned above) place on the total $Br(h\to\phi_1 \phi_2)$? As the $2\gamma,3\gamma,4\gamma$ modes can provide some of the sub-dominant signatures in the benchmark points ABC in Section 4, it would be good to know how constrained these new decays modes involving xi-jets already are, i.e. extending my naive calculations would probably be helpful to point out why we (LHC experiments) should start searching now for this signature.
+\vskip 0.12in
+\textcolor{blue}{These are good points. The calculations you included are a good start.  Any limit depends on the light scalar masses, $m_{i}$, because this dictates which $\gamma$ decay mode will occur most often. If we take the strongest constraint (from $h\to4\gamma$ or $h\to2\gamma$) this gives a cross section $\times$ branching ratio of 10 fb. The weaker constraint $h\to3\gamma$ gives a $\sigma\times BR$ of 50 fb. To give an estimate of how many events we would expect with a given integrated luminosity we can take the $m_{\phi}$ = 2 GeV point as an example. This has an efficiency for reconstruction of $\approx50\%$. If we take a Br($h\to\phi\phi) = 10^{-4}$ and an integrated luminosity of 300 $\text{fb}^{-1}$, this leaves us with about 7500 events reconstructed.}
+\vskip 0.12in
+
+C: What has happened to the additional non-matched events  (~50 - 70\%) of the events in the mass range)? Are they in the "lost" category? If so, would these be reconstructed as significant missing transverse energy? CMS has published a preliminary result on $h\to\gamma + $ MET in the VBF channel (https://cds.cern.ch/record/2724995/files/EXO-20-005-pas.pdf) which restricts this to ~2\% of the Higgs decays (i.e. much looser than the other constraints discussed above). I'm guessing that the relatively loose constraint from this analysis implies no additional constraints on the channel though.
+\vskip 0.12in
+\textcolor{blue}{The number of lost events is a strong function of the invariant mass window we choose around $m_{h}$. The shown plot is with a cut on the invariant mass of $\gamma$ + $\xi$-jets of $m_{h}\pm 3 GeV$. If we widen this to 10 GeV, the efficiency is above 90\%. So the losses are mainly due to jet energy resolution. We are not sure if our model would be a good candidate for a $\gamma$ + MET search. When photons fail isolation or identification it isn't clear that these go into MET, in fact we are not sure what happens with the clusters of energy that fail to be identified as a jet or photon.}
+\vskip 0.12in
+
+C: It would probably be good to make signal and background distributions for all of the variables given in Table 2.
+\vskip 0.12in
+\textcolor{blue}{We agree, distributions have been added to the paper.}
+\vskip 0.12in
+
+C: For the jet clustering, it might be good to put in some realistic energy cuts on the constituents (this might already be done in Delphes?) to build the xi-jets. If it's just the "truth" particle energy used, there would naturally be more "lost" events in the experiments because of noise suppression cuts needed to combat electronics noise+pileup. 
+\vskip 0.12in
+\textcolor{blue}{Threshold for all of our constituents in the jets is .5 GeV}
+\vskip 0.12in
+
+C: An ET/pT distribution of the xi-jets might be interesting, because ATLAS and CMS typically cut out low pT objects, around ~ 10-20 GeV. I'm guessing that the xi-jet pT is centered around ~mh/2, so this threshold shouldn't be a problem.
+\vskip 0.12in
+\textcolor{blue}{We have a minimum PT of 20 GeV placed on our $\xi$-jets.}
+\vskip 0.12in
+
+C: In Figure 5: Is this the reconstruction efficiency for all 2y Higgs events or for only unconverted 2y Higgs events? That can also provide some inefficiency. If we can only use xi-jets without conversions, that's a limitation to account for (even if it's stated well and in Table 2).
+\vskip 0.12in
+\textcolor{blue}{This is the reconstruction efficiency for only unconverted Higgs events. Delphes by default does not simulate photon conversion in LHC, but this can be done. We chose to ignore it and place a cut on any jets with charged tracks. This obviously will add to the inefficiency in a real analysis.}
+\vskip 0.12in
+
+\end{document}

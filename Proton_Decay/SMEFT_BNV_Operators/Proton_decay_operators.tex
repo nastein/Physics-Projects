@@ -1,0 +1,73 @@
+\documentclass[aps,onecolumn,twoside,secnumarabic,balancelastpage,amsmath,amssymb,nofootinbib,hyperref=pdftex]{revtex4}
+
+
+\usepackage{color}         % produces boxes or entire pages with colored backgrounds
+\usepackage{graphics}      % standard graphics specifications
+\usepackage[pdftex]{graphicx}      % alternative graphics specifications
+\usepackage{longtable}     % helps with long table options
+\usepackage{amsmath}
+\usepackage{epsf}          % old package handles encapsulated post script issues
+\usepackage{bm}            % special 'bold-math' package
+\usepackage{verbatim}			% for comment environment
+\usepackage[colorlinks=true]{hyperref}  % this package should be added after all others % use as follows: \url{http://web.mit.edu/8.13}                                    
+                                  
+
+\begin{document}
+\title{}
+\author         {Noah Steinberg}
+\email          {nastein@umich.edu}
+\date{\today}
+\affiliation{University of Michigan - Physics}
+
+\maketitle
+
+\section{Dimension 6 operators for Baryon Number Violation in the Standard Model}
+
+In this note we list the lowest dimension operators which contribute to baryon number violation using only standard model fields. The constraints on these operators are: invariance under $SU(3) \times SU(2)_{L} \times U(1)_{Y}$ and Lorentz invariance. We follow \cite{Alonso} for a list of these operators. 
+
+\begin{enumerate}
+\item $Q^{duql}_{prst} = (\bar{d}^{c\alpha}_{p}u^{\beta}_{r})(\bar{q}^{ci\gamma}_{s}l^{j}_{t})\epsilon_{\alpha\beta\gamma}\epsilon_{ij}$
+\item $Q^{qque}_{prst} = (\bar{q}^{ci\alpha}_{p}q^{j\beta}_{r})(\bar{u}^{c\gamma}_{s}e_{t})\epsilon_{\alpha\beta\gamma}\epsilon_{ij}$
+\item $Q^{qqql}_{prst} = (\bar{q}^{ci\alpha}_{p}q^{j\beta}_{r})(\bar{q}^{ck\gamma}_{s}l^{l}_{t})\epsilon_{\alpha\beta\gamma}\epsilon_{il}\epsilon_{jk}$
+\item $Q^{duue}_{prst} = (\bar{d}^{c\alpha}_{p}u^{\beta}_{r})(\bar{u}^{c\gamma}_{s}e_{t})\epsilon_{\alpha\beta\gamma}$
+\end{enumerate}
+
+In the above we have used 4 component Dirac notation. d,u, and e refer to right handed down and up type quark fields and charged leptons, l and q are left handed SU(2) quark and lepton doublets. The superscript '$c$' on a field like $\Psi^{c}$ denotes the charge conjugated field operator. SU(3) indices are $\alpha, \beta$, and $\gamma$, SU(2) indices are i, j, k, and l. Flavor indices are p, r, s, and t. To identify which combination of operators are relevant to the proton decay channel $p \rightarrow K^{+}\bar{\nu}$, we need just fill in the flavor structure (p, r, s, and t) from the four fermion operators above so that they contain a strange, up, and down quark, as well as a neutrino. It is easy to see that $O^{qque}_{prst}$ and $O^{duue}_{prst}$ do not contribute to this channel because they cannot contain a neutrino, assuming that the right handed neutrino does not exist. 
+
+
+Overall we find that the operators $O^{duql}_{prst}$ and $O^{qqql}_{prst}$ together contribute 6 terms that will allow the transition $p \rightarrow K^{+}\bar{\nu}$. In the following we will leave the flavor index on the lepton doublet, t, arbitrary and $e^{-}$ and $\nu$ stand for any lepton doublet (electron, muon tau). From $O^{duql}_{prst}$ we find two terms:
+
+\begin{enumerate}
+\item $Q^{duql}_{112t} = \epsilon_{\alpha\beta\gamma}(\bar{d}_{R}^{c\alpha}u_{R}^{\beta})(\bar{c}_{L}^{c\gamma}e_{L}^{-} - \bar{s}_{L}^{c\gamma}\nu_{L})$
+\item $Q^{duql}_{211t} = \epsilon_{\alpha\beta\gamma}(\bar{s}_{R}^{c\alpha}u_{R}^{\beta})(\bar{u}_{L}^{c\gamma}e_{L}^{-} - \bar{d}_{L}^{c\gamma}\nu_{L})$
+\end{enumerate}
+ 
+The above operators contribute because they have $sud\nu$ terms. The operator $O^{qqql}_{prst}$ contributes 4 terms:
+
+\begin{enumerate}
+\item $Q^{qqql}_{112t} = \epsilon_{\alpha\beta\gamma}[(\bar{u}_{L}^{c\alpha}u_{L}^{\beta})(\bar{s}_{L}^{c\gamma}e_{L}^{-}) - (\bar{u}_{L}^{c\alpha}d_{L}^{\beta})(\bar{c}_{L}^{c\gamma}e_{L}^{-}) - (\bar{d}_{L}^{c\alpha}u_{L}^{\beta})(\bar{s}_{L}^{c\gamma}\nu_{L}) + (\bar{d}_{L}^{c\alpha}d_{L}^{\beta})(\bar{c}_{L}^{c\gamma}\nu_{L})]$
+
+\item $Q^{qqql}_{121t} = \epsilon_{\alpha\beta\gamma}[(\bar{u}^{c\alpha}_{L}c^{\beta}_{L})(\bar{d}^{c\gamma}_{L}e^{-}_{L}) - (\bar{u}^{c\alpha}_{L}s^{\beta}_{L})(\bar{u}^{c\gamma}_{L}e^{-}_{L}) - (\bar{d}^{c\alpha}_{L}c^{\beta}_{L})(\bar{d}^{c\gamma}_{L}\nu_{L}) + (\bar{d}^{c\alpha}_{L}s^{\beta}_{L})(\bar{u}^{c\gamma}_{L}\nu_{L})]$
+
+\item $Q^{qqql}_{211t} =  \epsilon_{\alpha\beta\gamma}[(\bar{c}^{c\alpha}_{L}u^{\beta}_{L})(\bar{d}^{c\gamma}_{L}e^{-}_{L}) - (\bar{c}^{c\alpha}_{L}d^{\beta}_{L})(\bar{u}^{c\gamma}_{L}e^{-}_{L}) - (\bar{s}^{c\alpha}_{L}u^{\beta}_{L})(\bar{d}^{c\gamma}_{L}\nu_{L}) + (\bar{s}^{c\alpha}_{L}d^{\beta}_{L})(\bar{u}^{c\gamma}_{L}\nu_{L})]$
+
+\end{enumerate}
+
+From each term we can identify an $sdu\nu$ term which all together leads to the effective lagrangian
+
+\begin{align}
+\mathcal{L}_{p^{+}\rightarrow K^{+}\nu} = \epsilon_{\alpha\beta\gamma}[&-c^{duql}_{112t}(\bar{d}_{R}^{c\alpha}u_{R}^{\beta})(\bar{s}_{L}^{c\gamma}\nu_{L}) - c^{duql}_{211t}(\bar{s}_{R}^{c\alpha}u_{R}^{\beta})(\bar{d}_{L}^{c\gamma}\nu_{L}) - c^{qqql}_{112t}(\bar{d}_{L}^{c\alpha}u_{L}^{\beta})(\bar{s}_{L}^{c\gamma}\nu_{L})\nonumber \\
+&+ c^{qqql}_{121t}(\bar{d}^{c\alpha}_{L}s^{\beta}_{L})(\bar{u}^{c\gamma}_{L}\nu_{L}) + c^{qqql}_{211t}(\bar{s}^{c\alpha}_{L}d^{\beta}_{L})(\bar{u}^{c\gamma}_{L}\nu_{L}) - c^{qqql}_{211t}(\bar{s}^{c\alpha}_{L}u^{\beta}_{L})(\bar{d}^{c\gamma}_{L}\nu_{L})]
+\end{align}
+
+Note in the above that $Q^{qqql}_{211t}$ contributes two terms to $p\rightarrow K^{+}\bar{\nu}$.
+ 
+\begin{thebibliography}{9}
+
+\bibitem{Alonso}
+R. Alonso et al.,  "Renormalization group evolution of dimension-six
+baryon number violating operators", JHEP 1404 (2014) 159 arXiv:1312.2014 [hep-ph] CERN-PH-TH-2013-305
+
+\end{thebibliography}
+
+\end{document}
